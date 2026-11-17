@@ -1,0 +1,39 @@
+# ==============================================================================
+# Plane Self-Hosted - Git Ignore Rules
+# ==============================================================================
+
+# Environment files & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+certs/
+
+# Backups & Data Archives
+backups/
+backup/
+*.tar.gz
+*.sql
+*.bak
+
+# Runtime & Container Logs
+logs/
+*.log
+
+# Python bytecode & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Operating System & IDE Artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

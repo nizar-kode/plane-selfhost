@@ -1,0 +1,1344 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "core_persistence_cluster",
+        "label": "Core State Persistence Stack",
+        "nodes": [
+          "docker_compose_plane_db",
+          "docker_compose_plane_redis",
+          "docker_compose_plane_minio",
+          "docker_compose_volume_pgdata",
+          "docker_compose_volume_uploads"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docker-compose.yml"
+      },
+      {
+        "id": "operations_management_suite",
+        "label": "Operations & Disaster Recovery Suite",
+        "nodes": [
+          "scripts_manage_ps1",
+          "scripts_manage_sh",
+          "scripts_backup_ps1",
+          "scripts_restore_ps1",
+          "scripts_generate_secrets"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "scripts/manage.ps1"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "build_project_graph_run_graphify_pipeline",
+      "label": "run_graphify_pipeline()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "file_type": "code",
+      "norm_label": "run_graphify_pipeline()",
+      "source_file": "build_project_graph.py",
+      "source_location": "L22"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_alphanumeric",
+      "label": "generate_alphanumeric()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "file_type": "code",
+      "norm_label": "generate_alphanumeric()",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L20"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_django_secret_key",
+      "label": "generate_django_secret_key()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "file_type": "code",
+      "norm_label": "generate_django_secret_key()",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_hex",
+      "label": "generate_hex()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "file_type": "code",
+      "norm_label": "generate_hex()",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L25"
+    },
+    {
+      "id": "scripts_generate_secrets_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L29"
+    },
+    {
+      "id": "build_project_graph",
+      "label": "build_project_graph.py",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "file_type": "code",
+      "norm_label": "build_project_graph.py",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "build_project_graph_rationale_1",
+      "label": "Complete Graphify Builder for Plane Self-Hosted Deployment Stack Generates\u2026",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "file_type": "rationale",
+      "norm_label": "complete graphify builder for plane self-hosted deployment stack generates...",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_generate_secrets_py",
+      "label": "generate_secrets.py",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "file_type": "code",
+      "norm_label": "generate_secrets.py",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_generate_secrets_rationale_2",
+      "label": "Plane Secret & Environment Generator Generates cryptographically secure secrets\u2026",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "file_type": "rationale",
+      "norm_label": "plane secret & environment generator generates cryptographically secure secrets...",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L2"
+    },
+    {
+      "id": "docker_compose_plane_admin",
+      "label": "plane-admin (God-Mode Console)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-admin (god-mode console)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_api",
+      "label": "plane-api (Django REST Core)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-api (django rest core)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_beat_worker",
+      "label": "plane-beat-worker (Celery Beat)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-beat-worker (celery beat)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_db",
+      "label": "plane-db (PostgreSQL 15)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-db (postgresql 15)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_live",
+      "label": "plane-live (Collaboration WebSockets)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-live (collaboration websockets)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_migrator",
+      "label": "plane-migrator (Schema Migrations)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-migrator (schema migrations)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_mq",
+      "label": "plane-mq (RabbitMQ 3.13)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-mq (rabbitmq 3.13)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_proxy",
+      "label": "plane-proxy (Caddy Gateway)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-proxy (caddy gateway)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_redis",
+      "label": "plane-redis (Valkey 7.2)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-redis (valkey 7.2)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_space",
+      "label": "plane-space (Publishing Portals)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-space (publishing portals)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_web",
+      "label": "plane-web (Next.js Web UI)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-web (next.js web ui)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_worker",
+      "label": "plane-worker (Celery Async)",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-worker (celery async)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_rabbitmq_data",
+      "label": "Volume: plane_rabbitmq_data",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "volume: plane_rabbitmq_data",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_redisdata",
+      "label": "Volume: plane_redisdata",
+      "community": 0,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "volume: plane_redisdata",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "graphify_analyze",
+      "label": "graphify_analyze",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_analyze",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "graphify_build",
+      "label": "graphify_build",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_build",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "graphify_cluster",
+      "label": "graphify_cluster",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_cluster",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "graphify_detect",
+      "label": "graphify_detect",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_detect",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "graphify_diagnostics",
+      "label": "graphify_diagnostics",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_diagnostics",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "graphify_export",
+      "label": "graphify_export",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_export",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "graphify_extract",
+      "label": "graphify_extract",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_extract",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "graphify_report",
+      "label": "graphify_report",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "graphify_report",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "json",
+      "label": "json",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "json",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "networkx",
+      "label": "networkx",
+      "community": 1,
+      "community_name": "Architecture Cluster 1",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "networkx",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "os",
+      "label": "os",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "os",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "pathlib",
+      "label": "pathlib",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "pathlib",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "re",
+      "label": "re",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "re",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "secrets",
+      "label": "secrets",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "secrets",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "string",
+      "label": "string",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "string",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "sys",
+      "label": "sys",
+      "community": 2,
+      "community_name": "Architecture Cluster 2",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "scripts_backup_ps1",
+      "label": "backup.ps1 (Hot Dump & Volume Archiver)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "backup.ps1 (hot dump & volume archiver)",
+      "source_file": "scripts/backup.ps1"
+    },
+    {
+      "id": "scripts_backup_sh",
+      "label": "backup.sh (Hot Dump & Volume Archiver)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "backup.sh (hot dump & volume archiver)",
+      "source_file": "scripts/backup.sh"
+    },
+    {
+      "id": "scripts_generate_secrets",
+      "label": "generate_secrets.py (Entropy Generator)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "generate_secrets.py (entropy generator)",
+      "source_file": "scripts/generate_secrets.py"
+    },
+    {
+      "id": "scripts_manage_ps1",
+      "label": "manage.ps1 (Operations CLI)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "manage.ps1 (operations cli)",
+      "source_file": "scripts/manage.ps1"
+    },
+    {
+      "id": "scripts_manage_sh",
+      "label": "manage.sh (Operations CLI)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "manage.sh (operations cli)",
+      "source_file": "scripts/manage.sh"
+    },
+    {
+      "id": "scripts_restore_ps1",
+      "label": "restore.ps1 (Disaster Recovery Engine)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "restore.ps1 (disaster recovery engine)",
+      "source_file": "scripts/restore.ps1"
+    },
+    {
+      "id": "scripts_restore_sh",
+      "label": "restore.sh (Disaster Recovery Engine)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "restore.sh (disaster recovery engine)",
+      "source_file": "scripts/restore.sh"
+    },
+    {
+      "id": "docker_compose_plane_minio",
+      "label": "plane-minio (Silo / S3)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "concept",
+      "norm_label": "plane-minio (silo / s3)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_pgdata",
+      "label": "Volume: plane_pgdata",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "concept",
+      "norm_label": "volume: plane_pgdata",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_uploads",
+      "label": "Volume: plane_uploads",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "concept",
+      "norm_label": "volume: plane_uploads",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docs_architecture",
+      "label": "docs/ARCHITECTURE.md",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "docs/architecture.md",
+      "source_file": "docs/ARCHITECTURE.md"
+    },
+    {
+      "id": "docs_backup_restore",
+      "label": "docs/BACKUP_RESTORE.md",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "docs/backup_restore.md",
+      "source_file": "docs/BACKUP_RESTORE.md"
+    },
+    {
+      "id": "docs_reverse_proxy",
+      "label": "docs/REVERSE_PROXY.md",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "docs/reverse_proxy.md",
+      "source_file": "docs/REVERSE_PROXY.md"
+    },
+    {
+      "id": "docs_upgrade",
+      "label": "docs/UPGRADE.md",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "docs/upgrade.md",
+      "source_file": "docs/UPGRADE.md"
+    },
+    {
+      "id": "proxy_caddy_caddyfile",
+      "label": "proxy/caddy/Caddyfile (Caddy Reverse Proxy)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "proxy/caddy/caddyfile (caddy reverse proxy)",
+      "source_file": "proxy/caddy/Caddyfile"
+    },
+    {
+      "id": "proxy_nginx_plane_conf",
+      "label": "proxy/nginx/plane.conf (Nginx Reverse Proxy)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "proxy/nginx/plane.conf (nginx reverse proxy)",
+      "source_file": "proxy/nginx/plane.conf"
+    },
+    {
+      "id": "proxy_traefik_dynamic_conf",
+      "label": "proxy/traefik/dynamic_conf.yml (Traefik Ingress)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "proxy/traefik/dynamic_conf.yml (traefik ingress)",
+      "source_file": "proxy/traefik/dynamic_conf.yml"
+    },
+    {
+      "id": "readme_md",
+      "label": "README.md (Operations Manual)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "readme.md (operations manual)",
+      "source_file": "README.md"
+    },
+    {
+      "id": "docker_compose_network_plane_network",
+      "label": "Network: plane-network (Isolated Bridge)",
+      "community": 5,
+      "community_name": "Architecture Cluster 5",
+      "file_type": "concept",
+      "norm_label": "network: plane-network (isolated bridge)",
+      "source_file": "docker-compose.yml"
+    }
+  ],
+  "links": [
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_django_secret_key",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_hex",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_alphanumeric",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "networkx",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "string",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "re",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "secrets",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_analyze",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_build",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_cluster",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_detect",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_diagnostics",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_export",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_extract",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_report",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "build_project_graph.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph",
+      "target": "build_project_graph_run_graphify_pipeline",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "build_project_graph.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "scripts_generate_secrets_generate_django_secret_key",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "scripts_generate_secrets_generate_alphanumeric",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "scripts_generate_secrets_generate_hex",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_py",
+      "target": "scripts_generate_secrets_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "build_project_graph_rationale_1",
+      "target": "build_project_graph",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "build_project_graph.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_generate_secrets_rationale_2",
+      "target": "scripts_generate_secrets_py",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_backup_ps1",
+      "target": "docker_compose_volume_pgdata",
+      "relation": "archives_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/backup.ps1"
+    },
+    {
+      "source": "scripts_backup_ps1",
+      "target": "docker_compose_volume_uploads",
+      "relation": "archives_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/backup.ps1"
+    },
+    {
+      "source": "docker_compose_plane_live",
+      "target": "docker_compose_plane_api",
+      "relation": "authenticates_via",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_redis",
+      "relation": "caches_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_space",
+      "target": "docker_compose_plane_api",
+      "relation": "calls_rest_api",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_web",
+      "target": "docker_compose_plane_api",
+      "relation": "calls_rest_api",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_migrator",
+      "target": "docker_compose_plane_mq",
+      "relation": "connects_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_migrator",
+      "target": "docker_compose_plane_redis",
+      "relation": "connects_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_worker",
+      "target": "docker_compose_plane_mq",
+      "relation": "consumes_tasks_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_migrator",
+      "relation": "depends_on_completion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docs_reverse_proxy",
+      "target": "proxy_caddy_caddyfile",
+      "relation": "documents_template",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/REVERSE_PROXY.md"
+    },
+    {
+      "source": "docs_reverse_proxy",
+      "target": "proxy_nginx_plane_conf",
+      "relation": "documents_template",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/REVERSE_PROXY.md"
+    },
+    {
+      "source": "docs_reverse_proxy",
+      "target": "proxy_traefik_dynamic_conf",
+      "relation": "documents_template",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/REVERSE_PROXY.md"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_mq",
+      "relation": "enqueues_tasks_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "scripts_manage_ps1",
+      "target": "scripts_backup_ps1",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/manage.ps1"
+    },
+    {
+      "source": "scripts_manage_ps1",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/manage.ps1"
+    },
+    {
+      "source": "scripts_manage_ps1",
+      "target": "scripts_restore_ps1",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/manage.ps1"
+    },
+    {
+      "source": "scripts_manage_sh",
+      "target": "scripts_backup_sh",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/manage.sh"
+    },
+    {
+      "source": "scripts_manage_sh",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/manage.sh"
+    },
+    {
+      "source": "scripts_manage_sh",
+      "target": "scripts_restore_sh",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/manage.sh"
+    },
+    {
+      "source": "docker_compose_plane_admin",
+      "target": "docker_compose_plane_api",
+      "relation": "manages_instance_via",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_migrator",
+      "target": "docker_compose_plane_db",
+      "relation": "migrates_schema",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_worker",
+      "target": "docker_compose_plane_db",
+      "relation": "persists_task_results",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_db",
+      "target": "docker_compose_volume_pgdata",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_minio",
+      "target": "docker_compose_volume_uploads",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_mq",
+      "target": "docker_compose_volume_rabbitmq_data",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_redis",
+      "target": "docker_compose_volume_redisdata",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_live",
+      "target": "docker_compose_plane_redis",
+      "relation": "pub_sub_broker",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_db",
+      "relation": "reads_and_writes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_backup_restore",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_reverse_proxy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_upgrade",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "scripts_restore_ps1",
+      "target": "docker_compose_volume_pgdata",
+      "relation": "restores_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/restore.ps1"
+    },
+    {
+      "source": "scripts_restore_ps1",
+      "target": "docker_compose_volume_uploads",
+      "relation": "restores_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/restore.ps1"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_admin",
+      "relation": "routes_admin_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_api",
+      "relation": "routes_api_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_space",
+      "relation": "routes_portal_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_web",
+      "relation": "routes_ui_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_live",
+      "relation": "routes_websocket_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_beat_worker",
+      "target": "docker_compose_plane_mq",
+      "relation": "schedules_periodic_tasks",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_minio",
+      "relation": "stores_assets_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "proxy_caddy_caddyfile",
+      "target": "docker_compose_plane_proxy",
+      "relation": "proxies_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "proxy/caddy/Caddyfile"
+    },
+    {
+      "source": "proxy_nginx_plane_conf",
+      "target": "docker_compose_plane_proxy",
+      "relation": "proxies_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "proxy/nginx/plane.conf"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "core_persistence_cluster",
+      "label": "Core State Persistence Stack",
+      "nodes": [
+        "docker_compose_plane_db",
+        "docker_compose_plane_redis",
+        "docker_compose_plane_minio",
+        "docker_compose_volume_pgdata",
+        "docker_compose_volume_uploads"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "operations_management_suite",
+      "label": "Operations & Disaster Recovery Suite",
+      "nodes": [
+        "scripts_manage_ps1",
+        "scripts_manage_sh",
+        "scripts_backup_ps1",
+        "scripts_restore_ps1",
+        "scripts_generate_secrets"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/manage.ps1"
+    }
+  ]
+}

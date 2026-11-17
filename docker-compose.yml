@@ -1,0 +1,381 @@
+# ==============================================================================
+# Plane Self-Hosted - Docker Compose Stack
+# Platform: Plane Community Edition (v1.5.0)
+# Documentation: https://docs.plane.so/
+# ==============================================================================
+
+# Reusable Environment Block Definitions (YAML Anchors)
+x-db-env: &db-env
+  PGHOST: ${PGHOST:-plane-db}
+  PGDATABASE: ${PGDATABASE:-plane}
+  POSTGRES_USER: ${POSTGRES_USER:-plane}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-plane_db_password_change_me}
+  POSTGRES_DB: ${POSTGRES_DB:-plane}
+  POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+  PGDATA: ${PGDATA:-/var/lib/postgresql/data}
+
+x-redis-env: &redis-env
+  REDIS_HOST: ${REDIS_HOST:-plane-redis}
+  REDIS_PORT: ${REDIS_PORT:-6379}
+  REDIS_URL: ${REDIS_URL:-redis://plane-redis:6379/}
+  REDIS_SSL_CERT_REQS: ${REDIS_SSL_CERT_REQS:-required}
+  REDIS_SSL_CA_CERTS: ${REDIS_SSL_CA_CERTS:-}
+
+x-minio-env: &minio-env
+  MINIO_ROOT_USER: ${AWS_ACCESS_KEY_ID:-plane_storage_access_key}
+  MINIO_ROOT_PASSWORD: ${AWS_SECRET_ACCESS_KEY:-plane_storage_secret_key_change_me}
+
+x-aws-s3-env: &aws-s3-env
+  AWS_REGION: ${AWS_REGION:-}
+  AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-plane_storage_access_key}
+  AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-plane_storage_secret_key_change_me}
+  AWS_S3_ENDPOINT_URL: ${AWS_S3_ENDPOINT_URL:-http://plane-minio:9000}
+  AWS_S3_BUCKET_NAME: ${AWS_S3_BUCKET_NAME:-uploads}
+
+x-proxy-env: &proxy-env
+  APP_DOMAIN: ${APP_DOMAIN:-localhost}
+  FILE_SIZE_LIMIT: ${FILE_SIZE_LIMIT:-52428800}
+  CERT_EMAIL: ${CERT_EMAIL:-}
+  CERT_ACME_CA: ${CERT_ACME_CA:-https://acme-v02.api.letsencrypt.org/directory}
+  CERT_ACME_DNS: ${CERT_ACME_DNS:-}
+  LISTEN_HTTP_PORT: ${LISTEN_HTTP_PORT:-80}
+  LISTEN_HTTPS_PORT: ${LISTEN_HTTPS_PORT:-443}
+  BUCKET_NAME: ${AWS_S3_BUCKET_NAME:-uploads}
+  SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+  TRUSTED_PROXIES: ${TRUSTED_PROXIES:-0.0.0.0/0}
+
+x-mq-env: &mq-env
+  RABBITMQ_HOST: ${RABBITMQ_HOST:-plane-mq}
+  RABBITMQ_PORT: ${RABBITMQ_PORT:-5672}
+  RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-plane}
+  RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-plane_mq_password_change_me}
+  RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST:-plane}
+  RABBITMQ_VHOST: ${RABBITMQ_VHOST:-plane}
+
+x-live-env: &live-env
+  API_BASE_URL: ${API_BASE_URL:-http://api:8000}
+  LIVE_SERVER_SECRET_KEY: ${LIVE_SERVER_SECRET_KEY:-change-this-to-a-secure-random-32-char-live-key}
+
+x-app-env: &app-env
+  WEB_URL: ${WEB_URL:-http://localhost}
+  DEBUG: ${DEBUG:-0}
+  CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost}
+  GUNICORN_WORKERS: ${GUNICORN_WORKERS:-2}
+  USE_MINIO: ${USE_MINIO:-1}
+  DATABASE_URL: ${DATABASE_URL:-postgresql://plane:plane_db_password_change_me@plane-db:5432/plane}
+  SECRET_KEY: ${SECRET_KEY:-change-this-to-a-secure-random-50-character-secret-key}
+  AMQP_URL: ${AMQP_URL:-amqp://plane:plane_mq_password_change_me@plane-mq:5672/plane}
+  API_KEY_RATE_LIMIT: ${API_KEY_RATE_LIMIT:-60/minute}
+  AUTHENTICATION_RATE_LIMIT: ${AUTHENTICATION_RATE_LIMIT:-10/minute}
+  NUM_PROXIES: ${NUM_PROXIES:-}
+  MINIO_ENDPOINT_SSL: ${MINIO_ENDPOINT_SSL:-0}
+  LIVE_SERVER_SECRET_KEY: ${LIVE_SERVER_SECRET_KEY:-change-this-to-a-secure-random-32-char-live-key}
+  WEBHOOK_ALLOWED_IPS: ${WEBHOOK_ALLOWED_IPS:-}
+  WEBHOOK_ALLOWED_HOSTS: ${WEBHOOK_ALLOWED_HOSTS:-}
+
+# ==============================================================================
+# Services
+# ==============================================================================
+services:
+  # ----------------------------------------------------------------------------
+  # Database Engine: PostgreSQL 15.7
+  # ----------------------------------------------------------------------------
+  plane-db:
+    image: postgres:15.7-alpine
+    container_name: plane-db
+    restart: unless-stopped
+    command: postgres -c 'max_connections=1000'
+    environment:
+      <<: *db-env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - plane-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-plane} -d $${POSTGRES_DB:-plane}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ----------------------------------------------------------------------------
+  # In-Memory Cache & Message State: Valkey (Redis 7.2)
+  # ----------------------------------------------------------------------------
+  plane-redis:
+    image: valkey/valkey:7.2.11-alpine
+    container_name: plane-redis
+    restart: unless-stopped
+    volumes:
+      - redisdata:/data
+    networks:
+      - plane-network
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli ping || redis-cli ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  # ----------------------------------------------------------------------------
+  # Message Broker: RabbitMQ 3.13
+  # ----------------------------------------------------------------------------
+  plane-mq:
+    image: rabbitmq:3.13.6-management-alpine
+    container_name: plane-mq
+    restart: unless-stopped
+    environment:
+      <<: *mq-env
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - plane-network
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 25s
+
+  # ----------------------------------------------------------------------------
+  # Object Storage: MinIO / Silo (S3-Compatible Storage)
+  # ----------------------------------------------------------------------------
+  plane-minio:
+    image: docker.io/pgsty/silo:RELEASE.2026-09-16T00-00-00Z
+    container_name: plane-minio
+    restart: unless-stopped
+    command: server /export --console-address ":9090"
+    environment:
+      <<: *minio-env
+    volumes:
+      - uploads:/export
+    networks:
+      - plane-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/minio/health/live || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ----------------------------------------------------------------------------
+  # Schema Migration Service (Runs Django Migrations and Exits)
+  # ----------------------------------------------------------------------------
+  migrator:
+    image: makeplane/plane-backend:${APP_RELEASE:-v1.5.0}
+    container_name: plane-migrator
+    command: ./bin/docker-entrypoint-migrator.sh
+    restart: on-failure
+    volumes:
+      - logs_migrator:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    networks:
+      - plane-network
+    depends_on:
+      plane-db:
+        condition: service_healthy
+      plane-redis:
+        condition: service_healthy
+      plane-mq:
+        condition: service_healthy
+
+  # ----------------------------------------------------------------------------
+  # Core Backend API: Django REST Service
+  # ----------------------------------------------------------------------------
+  api:
+    image: makeplane/plane-backend:${APP_RELEASE:-v1.5.0}
+    container_name: plane-api
+    command: ./bin/docker-entrypoint-api.sh
+    restart: unless-stopped
+    volumes:
+      - logs_api:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    networks:
+      - plane-network
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+      plane-db:
+        condition: service_healthy
+      plane-redis:
+        condition: service_healthy
+      plane-mq:
+        condition: service_healthy
+      plane-minio:
+        condition: service_healthy
+
+  # ----------------------------------------------------------------------------
+  # Celery Asynchronous Worker
+  # ----------------------------------------------------------------------------
+  worker:
+    image: makeplane/plane-backend:${APP_RELEASE:-v1.5.0}
+    container_name: plane-worker
+    command: ./bin/docker-entrypoint-worker.sh
+    restart: unless-stopped
+    volumes:
+      - logs_worker:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    networks:
+      - plane-network
+    depends_on:
+      api:
+        condition: service_started
+      plane-db:
+        condition: service_healthy
+      plane-redis:
+        condition: service_healthy
+      plane-mq:
+        condition: service_healthy
+
+  # ----------------------------------------------------------------------------
+  # Celery Beat Scheduled Task Worker
+  # ----------------------------------------------------------------------------
+  beat-worker:
+    image: makeplane/plane-backend:${APP_RELEASE:-v1.5.0}
+    container_name: plane-beat-worker
+    command: ./bin/docker-entrypoint-beat.sh
+    restart: unless-stopped
+    volumes:
+      - logs_beat-worker:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    networks:
+      - plane-network
+    depends_on:
+      api:
+        condition: service_started
+      plane-db:
+        condition: service_healthy
+      plane-redis:
+        condition: service_healthy
+      plane-mq:
+        condition: service_healthy
+
+  # ----------------------------------------------------------------------------
+  # Real-Time Collaboration Server (WebSockets)
+  # ----------------------------------------------------------------------------
+  live:
+    image: makeplane/plane-live:${APP_RELEASE:-v1.5.0}
+    container_name: plane-live
+    stop_grace_period: 30s
+    restart: unless-stopped
+    environment:
+      <<: [*live-env, *redis-env]
+    networks:
+      - plane-network
+    depends_on:
+      api:
+        condition: service_started
+      plane-redis:
+        condition: service_healthy
+
+  # ----------------------------------------------------------------------------
+  # Web Frontend: Main User Interface
+  # ----------------------------------------------------------------------------
+  web:
+    image: makeplane/plane-frontend:${APP_RELEASE:-v1.5.0}
+    container_name: plane-web
+    restart: unless-stopped
+    networks:
+      - plane-network
+    depends_on:
+      api:
+        condition: service_started
+      worker:
+        condition: service_started
+
+  # ----------------------------------------------------------------------------
+  # Plane Space: Public Portals & Documentation
+  # ----------------------------------------------------------------------------
+  space:
+    image: makeplane/plane-space:${APP_RELEASE:-v1.5.0}
+    container_name: plane-space
+    restart: unless-stopped
+    networks:
+      - plane-network
+    depends_on:
+      api:
+        condition: service_started
+      worker:
+        condition: service_started
+      web:
+        condition: service_started
+
+  # ----------------------------------------------------------------------------
+  # Plane Admin: Instance Administration Console
+  # ----------------------------------------------------------------------------
+  admin:
+    image: makeplane/plane-admin:${APP_RELEASE:-v1.5.0}
+    container_name: plane-admin
+    restart: unless-stopped
+    networks:
+      - plane-network
+    depends_on:
+      api:
+        condition: service_started
+      web:
+        condition: service_started
+
+  # ----------------------------------------------------------------------------
+  # Gateway Proxy: Bundled Caddy Router & SSL Terminator
+  # ----------------------------------------------------------------------------
+  proxy:
+    image: makeplane/plane-proxy:${APP_RELEASE:-v1.5.0}
+    container_name: plane-proxy
+    restart: unless-stopped
+    environment:
+      <<: *proxy-env
+    ports:
+      - "${LISTEN_HTTP_PORT:-80}:80"
+      - "${LISTEN_HTTPS_PORT:-443}:443"
+    volumes:
+      - proxy_config:/config
+      - proxy_data:/data
+    networks:
+      - plane-network
+    depends_on:
+      web:
+        condition: service_started
+      api:
+        condition: service_started
+      space:
+        condition: service_started
+      admin:
+        condition: service_started
+      live:
+        condition: service_started
+
+# ==============================================================================
+# Persistent Storage Volumes
+# ==============================================================================
+volumes:
+  pgdata:
+    name: plane_pgdata
+  redisdata:
+    name: plane_redisdata
+  rabbitmq_data:
+    name: plane_rabbitmq_data
+  uploads:
+    name: plane_uploads
+  logs_api:
+    name: plane_logs_api
+  logs_worker:
+    name: plane_logs_worker
+  logs_beat-worker:
+    name: plane_logs_beat_worker
+  logs_migrator:
+    name: plane_logs_migrator
+  proxy_config:
+    name: plane_proxy_config
+  proxy_data:
+    name: plane_proxy_data
+
+# ==============================================================================
+# Isolated Virtual Network
+# ==============================================================================
+networks:
+  plane-network:
+    name: plane-network
+    driver: bridge

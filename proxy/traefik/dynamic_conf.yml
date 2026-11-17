@@ -1,0 +1,46 @@
+# ==============================================================================
+# Plane Self-Hosted - Traefik Dynamic Configuration Template
+# ==============================================================================
+
+http:
+  routers:
+    plane-http:
+      rule: "Host(`plane.yourdomain.com`)"
+      entryPoints:
+        - "web"
+      middlewares:
+        - "redirect-to-https"
+      service: "plane-service"
+
+    plane-https:
+      rule: "Host(`plane.yourdomain.com`)"
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: "letsencrypt"
+      middlewares:
+        - "plane-headers"
+      service: "plane-service"
+
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: "https"
+        permanent: true
+
+    plane-headers:
+      headers:
+        sslRedirect: true
+        stsSeconds: 31536000
+        stsIncludeSubdomains: true
+        stsPreload: true
+        customFrameOptionsValue: "SAMEORIGIN"
+        contentTypeNosniff: true
+        browserXssFilter: true
+
+  services:
+    plane-service:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1:80"
+        passHostHeader: true

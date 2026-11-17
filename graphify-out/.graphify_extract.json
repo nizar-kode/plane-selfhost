@@ -1,0 +1,973 @@
+{
+  "nodes": [
+    {
+      "id": "build_project_graph",
+      "label": "build_project_graph.py",
+      "file_type": "code",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "build_project_graph_run_graphify_pipeline",
+      "label": "run_graphify_pipeline()",
+      "file_type": "code",
+      "source_file": "build_project_graph.py",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "build_project_graph_rationale_1",
+      "label": "Complete Graphify Builder for Plane Self-Hosted Deployment Stack Generates…",
+      "file_type": "rationale",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets",
+      "label": "generate_secrets.py",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_django_secret_key",
+      "label": "generate_django_secret_key()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L15",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_alphanumeric",
+      "label": "generate_alphanumeric()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L21",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_hex",
+      "label": "generate_hex()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L26",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L30",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_rationale_2",
+      "label": "Plane Secret & Environment Generator Generates cryptographically secure secrets…",
+      "file_type": "rationale",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "docker_compose_plane_db",
+      "label": "plane-db (PostgreSQL 15)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_redis",
+      "label": "plane-redis (Valkey 7.2)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_mq",
+      "label": "plane-mq (RabbitMQ 3.13)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_minio",
+      "label": "plane-minio (Silo / S3)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_migrator",
+      "label": "plane-migrator (Schema Migrations)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_api",
+      "label": "plane-api (Django REST Core)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_worker",
+      "label": "plane-worker (Celery Async)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_beat_worker",
+      "label": "plane-beat-worker (Celery Beat)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_live",
+      "label": "plane-live (Collaboration WebSockets)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_web",
+      "label": "plane-web (Next.js Web UI)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_space",
+      "label": "plane-space (Publishing Portals)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_admin",
+      "label": "plane-admin (God-Mode Console)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_proxy",
+      "label": "plane-proxy (Caddy Gateway)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_pgdata",
+      "label": "Volume: plane_pgdata",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_uploads",
+      "label": "Volume: plane_uploads",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_redisdata",
+      "label": "Volume: plane_redisdata",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_rabbitmq_data",
+      "label": "Volume: plane_rabbitmq_data",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_network_plane_network",
+      "label": "Network: plane-network (Isolated Bridge)",
+      "file_type": "concept",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "scripts_manage_ps1",
+      "label": "manage.ps1 (Operations CLI)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1"
+    },
+    {
+      "id": "scripts_manage_sh",
+      "label": "manage.sh (Operations CLI)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.sh"
+    },
+    {
+      "id": "scripts_backup_ps1",
+      "label": "backup.ps1 (Hot Dump & Volume Archiver)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.ps1"
+    },
+    {
+      "id": "scripts_backup_sh",
+      "label": "backup.sh (Hot Dump & Volume Archiver)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.sh"
+    },
+    {
+      "id": "scripts_restore_ps1",
+      "label": "restore.ps1 (Disaster Recovery Engine)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\restore.ps1"
+    },
+    {
+      "id": "scripts_restore_sh",
+      "label": "restore.sh (Disaster Recovery Engine)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\restore.sh"
+    },
+    {
+      "id": "docs_architecture",
+      "label": "docs/ARCHITECTURE.md",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\ARCHITECTURE.md"
+    },
+    {
+      "id": "docs_backup_restore",
+      "label": "docs/BACKUP_RESTORE.md",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\BACKUP_RESTORE.md"
+    },
+    {
+      "id": "docs_upgrade",
+      "label": "docs/UPGRADE.md",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\UPGRADE.md"
+    },
+    {
+      "id": "docs_reverse_proxy",
+      "label": "docs/REVERSE_PROXY.md",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REVERSE_PROXY.md"
+    },
+    {
+      "id": "proxy_nginx_plane_conf",
+      "label": "proxy/nginx/plane.conf (Nginx Reverse Proxy)",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\proxy\\nginx\\plane.conf"
+    },
+    {
+      "id": "proxy_caddy_caddyfile",
+      "label": "proxy/caddy/Caddyfile (Caddy Reverse Proxy)",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\proxy\\caddy\\Caddyfile"
+    },
+    {
+      "id": "proxy_traefik_dynamic_conf",
+      "label": "proxy/traefik/dynamic_conf.yml (Traefik Ingress)",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\proxy\\traefik\\dynamic_conf.yml"
+    },
+    {
+      "id": "readme_md",
+      "label": "README.md (Operations Manual)",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "build_project_graph",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "os",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "networkx",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_analyze",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_build",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_cluster",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_detect",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_diagnostics",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_export",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_extract",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_report",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "build_project_graph_run_graphify_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph_rationale_1",
+      "target": "build_project_graph",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "os",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "re",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "secrets",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "string",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_generate_django_secret_key",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_generate_alphanumeric",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_generate_hex",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_django_secret_key",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_hex",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_alphanumeric",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_rationale_2",
+      "target": "scripts_generate_secrets",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "docker_compose_plane_db",
+      "target": "docker_compose_volume_pgdata",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_redis",
+      "target": "docker_compose_volume_redisdata",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_mq",
+      "target": "docker_compose_volume_rabbitmq_data",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_minio",
+      "target": "docker_compose_volume_uploads",
+      "relation": "persists_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_migrator",
+      "target": "docker_compose_plane_db",
+      "relation": "migrates_schema",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_migrator",
+      "target": "docker_compose_plane_redis",
+      "relation": "connects_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_migrator",
+      "target": "docker_compose_plane_mq",
+      "relation": "connects_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_migrator",
+      "relation": "depends_on_completion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_db",
+      "relation": "reads_and_writes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_redis",
+      "relation": "caches_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_mq",
+      "relation": "enqueues_tasks_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_api",
+      "target": "docker_compose_plane_minio",
+      "relation": "stores_assets_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_worker",
+      "target": "docker_compose_plane_mq",
+      "relation": "consumes_tasks_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_worker",
+      "target": "docker_compose_plane_db",
+      "relation": "persists_task_results",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_beat_worker",
+      "target": "docker_compose_plane_mq",
+      "relation": "schedules_periodic_tasks",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_live",
+      "target": "docker_compose_plane_api",
+      "relation": "authenticates_via",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_live",
+      "target": "docker_compose_plane_redis",
+      "relation": "pub_sub_broker",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_web",
+      "target": "docker_compose_plane_api",
+      "relation": "calls_rest_api",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_space",
+      "target": "docker_compose_plane_api",
+      "relation": "calls_rest_api",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_admin",
+      "target": "docker_compose_plane_api",
+      "relation": "manages_instance_via",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_web",
+      "relation": "routes_ui_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_api",
+      "relation": "routes_api_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_space",
+      "relation": "routes_portal_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_admin",
+      "relation": "routes_admin_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "docker_compose_plane_proxy",
+      "target": "docker_compose_plane_live",
+      "relation": "routes_websocket_traffic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "source": "scripts_manage_ps1",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1"
+    },
+    {
+      "source": "scripts_manage_ps1",
+      "target": "scripts_backup_ps1",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1"
+    },
+    {
+      "source": "scripts_manage_ps1",
+      "target": "scripts_restore_ps1",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1"
+    },
+    {
+      "source": "scripts_manage_sh",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.sh"
+    },
+    {
+      "source": "scripts_manage_sh",
+      "target": "scripts_backup_sh",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.sh"
+    },
+    {
+      "source": "scripts_manage_sh",
+      "target": "scripts_restore_sh",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.sh"
+    },
+    {
+      "source": "scripts_backup_ps1",
+      "target": "docker_compose_volume_pgdata",
+      "relation": "archives_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.ps1"
+    },
+    {
+      "source": "scripts_backup_ps1",
+      "target": "docker_compose_volume_uploads",
+      "relation": "archives_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.ps1"
+    },
+    {
+      "source": "scripts_restore_ps1",
+      "target": "docker_compose_volume_pgdata",
+      "relation": "restores_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\restore.ps1"
+    },
+    {
+      "source": "scripts_restore_ps1",
+      "target": "docker_compose_volume_uploads",
+      "relation": "restores_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\restore.ps1"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_backup_restore",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_upgrade",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_reverse_proxy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
+    },
+    {
+      "source": "docs_reverse_proxy",
+      "target": "proxy_nginx_plane_conf",
+      "relation": "documents_template",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REVERSE_PROXY.md"
+    },
+    {
+      "source": "docs_reverse_proxy",
+      "target": "proxy_caddy_caddyfile",
+      "relation": "documents_template",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REVERSE_PROXY.md"
+    },
+    {
+      "source": "docs_reverse_proxy",
+      "target": "proxy_traefik_dynamic_conf",
+      "relation": "documents_template",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REVERSE_PROXY.md"
+    },
+    {
+      "source": "proxy_nginx_plane_conf",
+      "target": "docker_compose_plane_proxy",
+      "relation": "proxies_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\proxy\\nginx\\plane.conf"
+    },
+    {
+      "source": "proxy_caddy_caddyfile",
+      "target": "docker_compose_plane_proxy",
+      "relation": "proxies_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\proxy\\caddy\\Caddyfile"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "core_persistence_cluster",
+      "label": "Core State Persistence Stack",
+      "nodes": [
+        "docker_compose_plane_db",
+        "docker_compose_plane_redis",
+        "docker_compose_plane_minio",
+        "docker_compose_volume_pgdata",
+        "docker_compose_volume_uploads"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml"
+    },
+    {
+      "id": "operations_management_suite",
+      "label": "Operations & Disaster Recovery Suite",
+      "nodes": [
+        "scripts_manage_ps1",
+        "scripts_manage_sh",
+        "scripts_backup_ps1",
+        "scripts_restore_ps1",
+        "scripts_generate_secrets"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

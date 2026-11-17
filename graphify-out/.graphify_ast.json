@@ -1,0 +1,402 @@
+{
+  "nodes": [
+    {
+      "id": "build_project_graph",
+      "label": "build_project_graph.py",
+      "file_type": "code",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "build_project_graph_run_graphify_pipeline",
+      "label": "run_graphify_pipeline()",
+      "file_type": "code",
+      "source_file": "build_project_graph.py",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "build_project_graph_rationale_1",
+      "label": "Complete Graphify Builder for Plane Self-Hosted Deployment Stack Generates…",
+      "file_type": "rationale",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets",
+      "label": "generate_secrets.py",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_django_secret_key",
+      "label": "generate_django_secret_key()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L15",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_alphanumeric",
+      "label": "generate_alphanumeric()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L21",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_generate_hex",
+      "label": "generate_hex()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L26",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L30",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "scripts_generate_secrets_rationale_2",
+      "label": "Plane Secret & Environment Generator Generates cryptographically secure secrets…",
+      "file_type": "rationale",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L2",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "build_project_graph",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "os",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "networkx",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_analyze",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_build",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_cluster",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_detect",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_diagnostics",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_export",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_extract",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "graphify_report",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph",
+      "target": "build_project_graph_run_graphify_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "build_project_graph_rationale_1",
+      "target": "build_project_graph",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "build_project_graph.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "os",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "re",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "secrets",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "string",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_generate_django_secret_key",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_generate_alphanumeric",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_generate_hex",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets",
+      "target": "scripts_generate_secrets_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_django_secret_key",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_hex",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_main",
+      "target": "scripts_generate_secrets_generate_alphanumeric",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "scripts_generate_secrets_rationale_2",
+      "target": "scripts_generate_secrets",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/generate_secrets.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "failed_sources": [],
+  "extracted_sources": [
+    "E:\\code\\antigravity\\plane project managmenet\\build_project_graph.py",
+    "E:\\code\\antigravity\\plane project managmenet\\scripts\\generate_secrets.py"
+  ]
+}

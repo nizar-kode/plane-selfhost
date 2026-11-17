@@ -1,0 +1,37 @@
+# ==============================================================================
+# Plane Self-Hosted - Caddy Configuration Template
+# Automatic Let's Encrypt HTTPS and WebSocket Support
+# ==============================================================================
+
+plane.yourdomain.com {
+    # Automatic TLS with Let's Encrypt
+    tls admin@yourdomain.com
+
+    # Security Headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+
+    # Request size limit (100MB for issue attachments & document assets)
+    request_body {
+        max_size 100MB
+    }
+
+    # Reverse proxy upstream to Plane's published HTTP port
+    reverse_proxy 127.0.0.1:80 {
+        # Transparent header forwarding
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-Proto https
+        header_up X-Forwarded-For {remote_host}
+
+        # WebSocket support is natively negotiated by Caddy
+    }
+
+    # Compression
+    encode zstd gzip
+}

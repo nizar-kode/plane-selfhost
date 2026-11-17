@@ -1,0 +1,48 @@
+{
+  "files": {
+    "code": [
+      "E:\\code\\antigravity\\plane project managmenet\\build_project_graph.py",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.ps1",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.sh",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\generate_secrets.py",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.sh",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\restore.ps1",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\restore.sh"
+    ],
+    "document": [
+      "E:\\code\\antigravity\\plane project managmenet\\README.md",
+      "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml",
+      "E:\\code\\antigravity\\plane project managmenet\\docs\\ARCHITECTURE.md",
+      "E:\\code\\antigravity\\plane project managmenet\\docs\\BACKUP_RESTORE.md",
+      "E:\\code\\antigravity\\plane project managmenet\\docs\\REVERSE_PROXY.md",
+      "E:\\code\\antigravity\\plane project managmenet\\docs\\UPGRADE.md",
+      "E:\\code\\antigravity\\plane project managmenet\\proxy\\traefik\\dynamic_conf.yml"
+    ],
+    "paper": [],
+    "image": [],
+    "video": []
+  },
+  "total_files": 15,
+  "total_words": 8849,
+  "needs_graph": false,
+  "warning": "Corpus is ~8,849 words - fits in a single context window. You may not need a graph.",
+  "skipped_sensitive": [],
+  "unclassified": [
+    "E:\\code\\antigravity\\plane project managmenet\\.env.example",
+    "E:\\code\\antigravity\\plane project managmenet\\.gitignore",
+    "E:\\code\\antigravity\\plane project managmenet\\proxy\\caddy\\Caddyfile",
+    "E:\\code\\antigravity\\plane project managmenet\\proxy\\nginx\\plane.conf"
+  ],
+  "walk_errors": [],
+  "ignored": [
+    "E:\\code\\antigravity\\plane project managmenet\\.env",
+    "E:\\code\\antigravity\\plane project managmenet\\backups\\"
+  ],
+  "pruned_noise_dirs": [
+    "E:\\code\\antigravity\\plane project managmenet\\.git\\",
+    "E:\\code\\antigravity\\plane project managmenet\\graphify-out\\"
+  ],
+  "graphifyignore_patterns": 26,
+  "scan_root": "E:\\code\\antigravity\\plane project managmenet"
+}
