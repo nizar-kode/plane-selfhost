@@ -1,9 +1,11 @@
 {
   "files": {
     "code": [
-      "E:\\code\\antigravity\\plane project managmenet\\build_project_graph.py",
+      "E:\\code\\antigravity\\plane project managmenet\\deploy.sh",
       "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.ps1",
       "E:\\code\\antigravity\\plane project managmenet\\scripts\\backup.sh",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\build_graph.py",
+      "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh",
       "E:\\code\\antigravity\\plane project managmenet\\scripts\\generate_secrets.py",
       "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1",
       "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.sh",
@@ -15,6 +17,7 @@
       "E:\\code\\antigravity\\plane project managmenet\\docker-compose.yml",
       "E:\\code\\antigravity\\plane project managmenet\\docs\\ARCHITECTURE.md",
       "E:\\code\\antigravity\\plane project managmenet\\docs\\BACKUP_RESTORE.md",
+      "E:\\code\\antigravity\\plane project managmenet\\docs\\REMOTE_DEPLOYMENT.md",
       "E:\\code\\antigravity\\plane project managmenet\\docs\\REVERSE_PROXY.md",
       "E:\\code\\antigravity\\plane project managmenet\\docs\\UPGRADE.md",
       "E:\\code\\antigravity\\plane project managmenet\\proxy\\traefik\\dynamic_conf.yml"
@@ -23,10 +26,10 @@
     "image": [],
     "video": []
   },
-  "total_files": 15,
-  "total_words": 8849,
+  "total_files": 18,
+  "total_words": 12302,
   "needs_graph": false,
-  "warning": "Corpus is ~8,849 words - fits in a single context window. You may not need a graph.",
+  "warning": "Corpus is ~12,302 words - fits in a single context window. You may not need a graph.",
   "skipped_sensitive": [],
   "unclassified": [
     "E:\\code\\antigravity\\plane project managmenet\\.env.example",

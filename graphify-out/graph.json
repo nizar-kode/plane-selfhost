@@ -32,12 +32,27 @@
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
         "source_file": "scripts/manage.ps1"
+      },
+      {
+        "id": "remote_deployment_pipeline",
+        "label": "Remote Server Provisioning Pipeline",
+        "nodes": [
+          "deploy_sh",
+          "scripts_deploy_server_sh",
+          "scripts_generate_secrets",
+          "docker_compose_plane_proxy",
+          "docs_remote_deployment"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "scripts/deploy-server.sh"
       }
     ]
   },
   "nodes": [
     {
-      "id": "build_project_graph_run_graphify_pipeline",
+      "id": "scripts_build_graph_run_graphify_pipeline",
       "label": "run_graphify_pipeline()",
       "_callable": true,
       "_origin": "ast",
@@ -45,7 +60,7 @@
       "community_name": "Architecture Cluster 1",
       "file_type": "code",
       "norm_label": "run_graphify_pipeline()",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L22"
     },
     {
@@ -58,7 +73,7 @@
       "file_type": "code",
       "norm_label": "generate_alphanumeric()",
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L20"
+      "source_location": "L21"
     },
     {
       "id": "scripts_generate_secrets_generate_django_secret_key",
@@ -82,7 +97,7 @@
       "file_type": "code",
       "norm_label": "generate_hex()",
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L25"
+      "source_location": "L26"
     },
     {
       "id": "scripts_generate_secrets_main",
@@ -94,32 +109,32 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L29"
+      "source_location": "L30"
     },
     {
-      "id": "build_project_graph",
-      "label": "build_project_graph.py",
+      "id": "scripts_build_graph",
+      "label": "build_graph.py",
       "_origin": "ast",
       "community": 1,
       "community_name": "Architecture Cluster 1",
       "file_type": "code",
-      "norm_label": "build_project_graph.py",
-      "source_file": "build_project_graph.py",
+      "norm_label": "build_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L1"
     },
     {
-      "id": "build_project_graph_rationale_1",
+      "id": "scripts_build_graph_rationale_1",
       "label": "Complete Graphify Builder for Plane Self-Hosted Deployment Stack Generates\u2026",
       "_origin": "ast",
       "community": 1,
       "community_name": "Architecture Cluster 1",
       "file_type": "rationale",
       "norm_label": "complete graphify builder for plane self-hosted deployment stack generates...",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L1"
     },
     {
-      "id": "scripts_generate_secrets_py",
+      "id": "scripts_generate_secrets",
       "label": "generate_secrets.py",
       "_origin": "ast",
       "community": 2,
@@ -443,99 +458,27 @@
       "type": "external"
     },
     {
-      "id": "scripts_backup_ps1",
-      "label": "backup.ps1 (Hot Dump & Volume Archiver)",
+      "id": "deploy_sh",
+      "label": "deploy.sh (Bootstrap Launcher)",
       "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "code",
-      "norm_label": "backup.ps1 (hot dump & volume archiver)",
-      "source_file": "scripts/backup.ps1"
+      "norm_label": "deploy.sh (bootstrap launcher)",
+      "source_file": "deploy.sh"
     },
     {
-      "id": "scripts_backup_sh",
-      "label": "backup.sh (Hot Dump & Volume Archiver)",
+      "id": "scripts_deploy_server_sh",
+      "label": "deploy-server.sh (Remote Server Automated Provisioner)",
       "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "code",
-      "norm_label": "backup.sh (hot dump & volume archiver)",
-      "source_file": "scripts/backup.sh"
-    },
-    {
-      "id": "scripts_generate_secrets",
-      "label": "generate_secrets.py (Entropy Generator)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "generate_secrets.py (entropy generator)",
-      "source_file": "scripts/generate_secrets.py"
-    },
-    {
-      "id": "scripts_manage_ps1",
-      "label": "manage.ps1 (Operations CLI)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "manage.ps1 (operations cli)",
-      "source_file": "scripts/manage.ps1"
-    },
-    {
-      "id": "scripts_manage_sh",
-      "label": "manage.sh (Operations CLI)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "manage.sh (operations cli)",
-      "source_file": "scripts/manage.sh"
-    },
-    {
-      "id": "scripts_restore_ps1",
-      "label": "restore.ps1 (Disaster Recovery Engine)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "restore.ps1 (disaster recovery engine)",
-      "source_file": "scripts/restore.ps1"
-    },
-    {
-      "id": "scripts_restore_sh",
-      "label": "restore.sh (Disaster Recovery Engine)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "restore.sh (disaster recovery engine)",
-      "source_file": "scripts/restore.sh"
-    },
-    {
-      "id": "docker_compose_plane_minio",
-      "label": "plane-minio (Silo / S3)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "concept",
-      "norm_label": "plane-minio (silo / s3)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_volume_pgdata",
-      "label": "Volume: plane_pgdata",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "concept",
-      "norm_label": "volume: plane_pgdata",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_volume_uploads",
-      "label": "Volume: plane_uploads",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "concept",
-      "norm_label": "volume: plane_uploads",
-      "source_file": "docker-compose.yml"
+      "norm_label": "deploy-server.sh (remote server automated provisioner)",
+      "source_file": "scripts/deploy-server.sh"
     },
     {
       "id": "docs_architecture",
       "label": "docs/ARCHITECTURE.md",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "docs/architecture.md",
@@ -544,16 +487,25 @@
     {
       "id": "docs_backup_restore",
       "label": "docs/BACKUP_RESTORE.md",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "docs/backup_restore.md",
       "source_file": "docs/BACKUP_RESTORE.md"
     },
     {
+      "id": "docs_remote_deployment",
+      "label": "docs/REMOTE_DEPLOYMENT.md",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "document",
+      "norm_label": "docs/remote_deployment.md",
+      "source_file": "docs/REMOTE_DEPLOYMENT.md"
+    },
+    {
       "id": "docs_reverse_proxy",
       "label": "docs/REVERSE_PROXY.md",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "docs/reverse_proxy.md",
@@ -562,7 +514,7 @@
     {
       "id": "docs_upgrade",
       "label": "docs/UPGRADE.md",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "docs/upgrade.md",
@@ -571,7 +523,7 @@
     {
       "id": "proxy_caddy_caddyfile",
       "label": "proxy/caddy/Caddyfile (Caddy Reverse Proxy)",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "proxy/caddy/caddyfile (caddy reverse proxy)",
@@ -580,7 +532,7 @@
     {
       "id": "proxy_nginx_plane_conf",
       "label": "proxy/nginx/plane.conf (Nginx Reverse Proxy)",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "proxy/nginx/plane.conf (nginx reverse proxy)",
@@ -589,7 +541,7 @@
     {
       "id": "proxy_traefik_dynamic_conf",
       "label": "proxy/traefik/dynamic_conf.yml (Traefik Ingress)",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "proxy/traefik/dynamic_conf.yml (traefik ingress)",
@@ -598,17 +550,98 @@
     {
       "id": "readme_md",
       "label": "README.md (Operations Manual)",
-      "community": 4,
+      "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
       "norm_label": "readme.md (operations manual)",
       "source_file": "README.md"
     },
     {
+      "id": "scripts_backup_ps1",
+      "label": "backup.ps1 (Hot Dump & Volume Archiver)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "backup.ps1 (hot dump & volume archiver)",
+      "source_file": "scripts/backup.ps1"
+    },
+    {
+      "id": "scripts_manage_ps1",
+      "label": "manage.ps1 (Operations CLI)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "manage.ps1 (operations cli)",
+      "source_file": "scripts/manage.ps1"
+    },
+    {
+      "id": "scripts_restore_ps1",
+      "label": "restore.ps1 (Disaster Recovery Engine)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "restore.ps1 (disaster recovery engine)",
+      "source_file": "scripts/restore.ps1"
+    },
+    {
+      "id": "docker_compose_plane_minio",
+      "label": "plane-minio (Silo / S3)",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "concept",
+      "norm_label": "plane-minio (silo / s3)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_pgdata",
+      "label": "Volume: plane_pgdata",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "concept",
+      "norm_label": "volume: plane_pgdata",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_uploads",
+      "label": "Volume: plane_uploads",
+      "community": 4,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "concept",
+      "norm_label": "volume: plane_uploads",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "scripts_backup_sh",
+      "label": "backup.sh (Hot Dump & Volume Archiver)",
+      "community": 5,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "backup.sh (hot dump & volume archiver)",
+      "source_file": "scripts/backup.sh"
+    },
+    {
+      "id": "scripts_manage_sh",
+      "label": "manage.sh (Operations CLI)",
+      "community": 5,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "manage.sh (operations cli)",
+      "source_file": "scripts/manage.sh"
+    },
+    {
+      "id": "scripts_restore_sh",
+      "label": "restore.sh (Disaster Recovery Engine)",
+      "community": 5,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "restore.sh (disaster recovery engine)",
+      "source_file": "scripts/restore.sh"
+    },
+    {
       "id": "docker_compose_network_plane_network",
       "label": "Network: plane-network (Isolated Bridge)",
-      "community": 5,
-      "community_name": "Architecture Cluster 5",
+      "community": 6,
+      "community_name": "Architecture Cluster 6",
       "file_type": "concept",
       "norm_label": "network: plane-network (isolated bridge)",
       "source_file": "docker-compose.yml"
@@ -624,7 +657,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L47",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -636,7 +669,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -648,59 +681,59 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "networkx",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L11",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "json",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L6",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "os",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L7",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "sys",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L8",
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "string",
       "relation": "imports",
       "_origin": "ast",
@@ -712,7 +745,7 @@
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "sys",
       "relation": "imports",
       "_origin": "ast",
@@ -724,7 +757,7 @@
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "os",
       "relation": "imports",
       "_origin": "ast",
@@ -736,7 +769,7 @@
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "re",
       "relation": "imports",
       "_origin": "ast",
@@ -748,7 +781,7 @@
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "secrets",
       "relation": "imports",
       "_origin": "ast",
@@ -760,115 +793,115 @@
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_analyze",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L12",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_build",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L13",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_cluster",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L14",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_detect",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L15",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_diagnostics",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L16",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_export",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L17",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_extract",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L18",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_report",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L19",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "pathlib",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L9",
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "pathlib",
       "relation": "imports_from",
       "_origin": "ast",
@@ -880,18 +913,18 @@
       "weight": 1.0
     },
     {
-      "source": "build_project_graph",
-      "target": "build_project_graph_run_graphify_pipeline",
+      "source": "scripts_build_graph",
+      "target": "scripts_build_graph_run_graphify_pipeline",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L22",
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "scripts_generate_secrets_generate_django_secret_key",
       "relation": "contains",
       "_origin": "ast",
@@ -902,52 +935,52 @@
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "scripts_generate_secrets_generate_alphanumeric",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "scripts_generate_secrets_generate_hex",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
-      "source": "scripts_generate_secrets_py",
+      "source": "scripts_generate_secrets",
       "target": "scripts_generate_secrets_main",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/generate_secrets.py",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
-      "source": "build_project_graph_rationale_1",
-      "target": "build_project_graph",
+      "source": "scripts_build_graph_rationale_1",
+      "target": "scripts_build_graph",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L1",
       "weight": 1.0
     },
     {
       "source": "scripts_generate_secrets_rationale_2",
-      "target": "scripts_generate_secrets_py",
+      "target": "scripts_generate_secrets",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -1037,6 +1070,14 @@
       "source_file": "docker-compose.yml"
     },
     {
+      "source": "docs_remote_deployment",
+      "target": "scripts_deploy_server_sh",
+      "relation": "documents_script",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/REMOTE_DEPLOYMENT.md"
+    },
+    {
       "source": "docs_reverse_proxy",
       "target": "proxy_caddy_caddyfile",
       "relation": "documents_template",
@@ -1067,6 +1108,22 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docker-compose.yml"
+    },
+    {
+      "source": "deploy_sh",
+      "target": "scripts_deploy_server_sh",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "deploy.sh"
+    },
+    {
+      "source": "scripts_deploy_server_sh",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/deploy-server.sh"
     },
     {
       "source": "scripts_manage_ps1",
@@ -1115,6 +1172,14 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/manage.sh"
+    },
+    {
+      "source": "scripts_deploy_server_sh",
+      "target": "docker_compose_plane_proxy",
+      "relation": "launches",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/deploy-server.sh"
     },
     {
       "source": "docker_compose_plane_admin",
@@ -1199,6 +1264,14 @@
     {
       "source": "readme_md",
       "target": "docs_backup_restore",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_remote_deployment",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -1339,6 +1412,22 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/manage.ps1"
+    },
+    {
+      "id": "remote_deployment_pipeline",
+      "label": "Remote Server Provisioning Pipeline",
+      "nodes": [
+        "deploy_sh",
+        "scripts_deploy_server_sh",
+        "scripts_generate_secrets",
+        "docker_compose_plane_proxy",
+        "docs_remote_deployment"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/deploy-server.sh"
     }
-  ]
+  ],
+  "built_at_commit": "ce22df56b168d6bcb5bf8806c664d450ecefbbd4"
 }

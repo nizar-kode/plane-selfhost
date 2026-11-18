@@ -1,27 +1,27 @@
 {
   "nodes": [
     {
-      "id": "build_project_graph",
-      "label": "build_project_graph.py",
+      "id": "scripts_build_graph",
+      "label": "build_graph.py",
       "file_type": "code",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L1",
       "_origin": "ast"
     },
     {
-      "id": "build_project_graph_run_graphify_pipeline",
+      "id": "scripts_build_graph_run_graphify_pipeline",
       "label": "run_graphify_pipeline()",
       "file_type": "code",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L22",
       "_callable": true,
       "_origin": "ast"
     },
     {
-      "id": "build_project_graph_rationale_1",
+      "id": "scripts_build_graph_rationale_1",
       "label": "Complete Graphify Builder for Plane Self-Hosted Deployment Stack Generates…",
       "file_type": "rationale",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L1",
       "_origin": "ast"
     },
@@ -222,6 +222,18 @@
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\restore.sh"
     },
     {
+      "id": "deploy_sh",
+      "label": "deploy.sh (Bootstrap Launcher)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\deploy.sh"
+    },
+    {
+      "id": "scripts_deploy_server_sh",
+      "label": "deploy-server.sh (Remote Server Automated Provisioner)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
+    },
+    {
       "id": "docs_architecture",
       "label": "docs/ARCHITECTURE.md",
       "file_type": "document",
@@ -232,6 +244,12 @@
       "label": "docs/BACKUP_RESTORE.md",
       "file_type": "document",
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\BACKUP_RESTORE.md"
+    },
+    {
+      "id": "docs_remote_deployment",
+      "label": "docs/REMOTE_DEPLOYMENT.md",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REMOTE_DEPLOYMENT.md"
     },
     {
       "id": "docs_upgrade",
@@ -272,164 +290,164 @@
   ],
   "edges": [
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "json",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "os",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "sys",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "pathlib",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "networkx",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_analyze",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_build",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_cluster",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_detect",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_diagnostics",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_export",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_extract",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
+      "source": "scripts_build_graph",
       "target": "graphify_report",
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph",
-      "target": "build_project_graph_run_graphify_pipeline",
+      "source": "scripts_build_graph",
+      "target": "scripts_build_graph_run_graphify_pipeline",
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
-      "source": "build_project_graph_rationale_1",
-      "target": "build_project_graph",
+      "source": "scripts_build_graph_rationale_1",
+      "target": "scripts_build_graph",
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
-      "source_file": "build_project_graph.py",
+      "source_file": "scripts/build_graph.py",
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast"
@@ -896,6 +914,46 @@
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
     },
     {
+      "source": "readme_md",
+      "target": "docs_remote_deployment",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
+    },
+    {
+      "source": "deploy_sh",
+      "target": "scripts_deploy_server_sh",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\deploy.sh"
+    },
+    {
+      "source": "scripts_deploy_server_sh",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
+    },
+    {
+      "source": "scripts_deploy_server_sh",
+      "target": "docker_compose_plane_proxy",
+      "relation": "launches",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
+    },
+    {
+      "source": "docs_remote_deployment",
+      "target": "scripts_deploy_server_sh",
+      "relation": "documents_script",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REMOTE_DEPLOYMENT.md"
+    },
+    {
       "source": "docs_reverse_proxy",
       "target": "proxy_nginx_plane_conf",
       "relation": "documents_template",
@@ -966,6 +1024,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\manage.ps1"
+    },
+    {
+      "id": "remote_deployment_pipeline",
+      "label": "Remote Server Provisioning Pipeline",
+      "nodes": [
+        "deploy_sh",
+        "scripts_deploy_server_sh",
+        "scripts_generate_secrets",
+        "docker_compose_plane_proxy",
+        "docs_remote_deployment"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
     }
   ],
   "input_tokens": 0,

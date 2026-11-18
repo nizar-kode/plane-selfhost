@@ -95,6 +95,28 @@ Before starting, ensure your host server meets the following requirements:
 
 ---
 
+## Remote Server Deployment (New Server / VPS)
+
+To deploy Plane on a fresh remote server (Ubuntu, Debian, CentOS, Rocky Linux, AWS, DigitalOcean, Hetzner, etc.) from scratch — including Docker installation, Git retrieval, secret generation, firewall setup, and container launch:
+
+```bash
+# 1. SSH into your remote server
+ssh root@your-server-ip
+
+# 2. Run the automated deployment bootstrap script
+curl -fsSL https://raw.githubusercontent.com/nizar-kode/plane-selfhost/main/deploy.sh | bash
+```
+
+Or if the repository is already cloned on the server:
+```bash
+./scripts/deploy-server.sh
+```
+
+> [!TIP]
+> For the comprehensive step-by-step manual, swap sizing, and cloud firewall recommendations, see **[docs/REMOTE_DEPLOYMENT.md](file:///docs/REMOTE_DEPLOYMENT.md)**.
+
+---
+
 ## Quick Start Guide
 
 ### 1. Clone the Repository
