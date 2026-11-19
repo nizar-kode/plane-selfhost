@@ -151,10 +151,22 @@
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\deploy.sh"
     },
     {
+      "id": "deploy_ps1",
+      "label": "deploy.ps1 (Windows Quick Launcher)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\deploy.ps1"
+    },
+    {
       "id": "scripts_deploy_server_sh",
       "label": "deploy-server.sh (Remote Server Automated Provisioner)",
       "file_type": "code",
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
+    },
+    {
+      "id": "scripts_deploy_server_ps1",
+      "label": "deploy-server.ps1 (Windows Server Automated Provisioner)",
+      "file_type": "code",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.ps1"
     },
     {
       "id": "scripts_generate_secrets",
@@ -179,6 +191,12 @@
       "label": "docs/REMOTE_DEPLOYMENT.md",
       "file_type": "document",
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REMOTE_DEPLOYMENT.md"
+    },
+    {
+      "id": "docs_windows_server_deployment",
+      "label": "docs/WINDOWS_SERVER_DEPLOYMENT.md",
+      "file_type": "document",
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\WINDOWS_SERVER_DEPLOYMENT.md"
     },
     {
       "id": "docs_upgrade",
@@ -539,12 +557,28 @@
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
     },
     {
+      "source": "readme_md",
+      "target": "docs_windows_server_deployment",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\README.md"
+    },
+    {
       "source": "deploy_sh",
       "target": "scripts_deploy_server_sh",
       "relation": "invokes",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\deploy.sh"
+    },
+    {
+      "source": "deploy_ps1",
+      "target": "scripts_deploy_server_ps1",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\deploy.ps1"
     },
     {
       "source": "scripts_deploy_server_sh",
@@ -555,6 +589,14 @@
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
     },
     {
+      "source": "scripts_deploy_server_ps1",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.ps1"
+    },
+    {
       "source": "scripts_deploy_server_sh",
       "target": "docker_compose_plane_proxy",
       "relation": "launches",
@@ -563,12 +605,28 @@
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
     },
     {
+      "source": "scripts_deploy_server_ps1",
+      "target": "docker_compose_plane_proxy",
+      "relation": "launches",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.ps1"
+    },
+    {
       "source": "docs_remote_deployment",
       "target": "scripts_deploy_server_sh",
       "relation": "documents_script",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\REMOTE_DEPLOYMENT.md"
+    },
+    {
+      "source": "docs_windows_server_deployment",
+      "target": "scripts_deploy_server_ps1",
+      "relation": "documents_script",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\docs\\WINDOWS_SERVER_DEPLOYMENT.md"
     },
     {
       "source": "docs_reverse_proxy",
@@ -656,6 +714,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.sh"
+    },
+    {
+      "id": "windows_deployment_pipeline",
+      "label": "Windows Server Automated Provisioning Pipeline",
+      "nodes": [
+        "deploy_ps1",
+        "scripts_deploy_server_ps1",
+        "scripts_generate_secrets",
+        "docker_compose_plane_proxy",
+        "docs_windows_server_deployment"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "E:\\code\\antigravity\\plane project managmenet\\scripts\\deploy-server.ps1"
     }
   ],
   "input_tokens": 0,

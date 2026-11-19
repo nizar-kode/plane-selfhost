@@ -47,6 +47,21 @@
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
         "source_file": "scripts/deploy-server.sh"
+      },
+      {
+        "id": "windows_deployment_pipeline",
+        "label": "Windows Server Automated Provisioning Pipeline",
+        "nodes": [
+          "deploy_ps1",
+          "scripts_deploy_server_ps1",
+          "scripts_generate_secrets",
+          "docker_compose_plane_proxy",
+          "docs_windows_server_deployment"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "scripts/deploy-server.ps1"
       }
     ]
   },
@@ -56,8 +71,8 @@
       "label": "run_graphify_pipeline()",
       "_callable": true,
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "file_type": "code",
       "norm_label": "run_graphify_pipeline()",
       "source_file": "scripts/build_graph.py",
@@ -69,7 +84,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "file_type": "code",
       "norm_label": "generate_alphanumeric()",
       "source_file": "scripts/generate_secrets.py",
@@ -81,7 +96,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "file_type": "code",
       "norm_label": "generate_django_secret_key()",
       "source_file": "scripts/generate_secrets.py",
@@ -93,7 +108,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "file_type": "code",
       "norm_label": "generate_hex()",
       "source_file": "scripts/generate_secrets.py",
@@ -105,7 +120,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "scripts/generate_secrets.py",
@@ -115,8 +130,8 @@
       "id": "scripts_build_graph",
       "label": "build_graph.py",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "file_type": "code",
       "norm_label": "build_graph.py",
       "source_file": "scripts/build_graph.py",
@@ -126,8 +141,8 @@
       "id": "scripts_build_graph_rationale_1",
       "label": "Complete Graphify Builder for Plane Self-Hosted Deployment Stack Generates\u2026",
       "_origin": "ast",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "file_type": "rationale",
       "norm_label": "complete graphify builder for plane self-hosted deployment stack generates...",
       "source_file": "scripts/build_graph.py",
@@ -138,7 +153,7 @@
       "label": "generate_secrets.py",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "file_type": "code",
       "norm_label": "generate_secrets.py",
       "source_file": "scripts/generate_secrets.py",
@@ -149,143 +164,17 @@
       "label": "Plane Secret & Environment Generator Generates cryptographically secure secrets\u2026",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "file_type": "rationale",
       "norm_label": "plane secret & environment generator generates cryptographically secure secrets...",
       "source_file": "scripts/generate_secrets.py",
       "source_location": "L2"
     },
     {
-      "id": "docker_compose_plane_admin",
-      "label": "plane-admin (God-Mode Console)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-admin (god-mode console)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_api",
-      "label": "plane-api (Django REST Core)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-api (django rest core)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_beat_worker",
-      "label": "plane-beat-worker (Celery Beat)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-beat-worker (celery beat)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_db",
-      "label": "plane-db (PostgreSQL 15)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-db (postgresql 15)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_live",
-      "label": "plane-live (Collaboration WebSockets)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-live (collaboration websockets)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_migrator",
-      "label": "plane-migrator (Schema Migrations)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-migrator (schema migrations)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_mq",
-      "label": "plane-mq (RabbitMQ 3.13)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-mq (rabbitmq 3.13)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_proxy",
-      "label": "plane-proxy (Caddy Gateway)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-proxy (caddy gateway)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_redis",
-      "label": "plane-redis (Valkey 7.2)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-redis (valkey 7.2)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_space",
-      "label": "plane-space (Publishing Portals)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-space (publishing portals)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_web",
-      "label": "plane-web (Next.js Web UI)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-web (next.js web ui)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_plane_worker",
-      "label": "plane-worker (Celery Async)",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "plane-worker (celery async)",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_volume_rabbitmq_data",
-      "label": "Volume: plane_rabbitmq_data",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "volume: plane_rabbitmq_data",
-      "source_file": "docker-compose.yml"
-    },
-    {
-      "id": "docker_compose_volume_redisdata",
-      "label": "Volume: plane_redisdata",
-      "community": 0,
-      "community_name": "Gateway & Reverse Proxy",
-      "file_type": "concept",
-      "norm_label": "volume: plane_redisdata",
-      "source_file": "docker-compose.yml"
-    },
-    {
       "id": "graphify_analyze",
       "label": "graphify_analyze",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_analyze",
@@ -295,8 +184,8 @@
     {
       "id": "graphify_build",
       "label": "graphify_build",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_build",
@@ -306,8 +195,8 @@
     {
       "id": "graphify_cluster",
       "label": "graphify_cluster",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_cluster",
@@ -317,8 +206,8 @@
     {
       "id": "graphify_detect",
       "label": "graphify_detect",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_detect",
@@ -328,8 +217,8 @@
     {
       "id": "graphify_diagnostics",
       "label": "graphify_diagnostics",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_diagnostics",
@@ -339,8 +228,8 @@
     {
       "id": "graphify_export",
       "label": "graphify_export",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_export",
@@ -350,8 +239,8 @@
     {
       "id": "graphify_extract",
       "label": "graphify_extract",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_extract",
@@ -361,8 +250,8 @@
     {
       "id": "graphify_report",
       "label": "graphify_report",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "graphify_report",
@@ -372,8 +261,8 @@
     {
       "id": "json",
       "label": "json",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "json",
@@ -383,8 +272,8 @@
     {
       "id": "networkx",
       "label": "networkx",
-      "community": 1,
-      "community_name": "Architecture Cluster 1",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "networkx",
@@ -392,21 +281,10 @@
       "type": "external"
     },
     {
-      "id": "os",
-      "label": "os",
-      "community": 2,
-      "community_name": "Architecture Cluster 2",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "os",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "pathlib",
       "label": "pathlib",
-      "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
       "external": true,
       "file_type": "concept",
       "norm_label": "pathlib",
@@ -414,10 +292,158 @@
       "type": "external"
     },
     {
+      "id": "sys",
+      "label": "sys",
+      "community": 0,
+      "community_name": "Architecture Cluster 0",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "docker_compose_plane_admin",
+      "label": "plane-admin (God-Mode Console)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-admin (god-mode console)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_api",
+      "label": "plane-api (Django REST Core)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-api (django rest core)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_beat_worker",
+      "label": "plane-beat-worker (Celery Beat)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-beat-worker (celery beat)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_db",
+      "label": "plane-db (PostgreSQL 15)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-db (postgresql 15)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_live",
+      "label": "plane-live (Collaboration WebSockets)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-live (collaboration websockets)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_migrator",
+      "label": "plane-migrator (Schema Migrations)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-migrator (schema migrations)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_mq",
+      "label": "plane-mq (RabbitMQ 3.13)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-mq (rabbitmq 3.13)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_proxy",
+      "label": "plane-proxy (Caddy Gateway)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-proxy (caddy gateway)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_redis",
+      "label": "plane-redis (Valkey 7.2)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-redis (valkey 7.2)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_space",
+      "label": "plane-space (Publishing Portals)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-space (publishing portals)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_web",
+      "label": "plane-web (Next.js Web UI)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-web (next.js web ui)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_plane_worker",
+      "label": "plane-worker (Celery Async)",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "plane-worker (celery async)",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_rabbitmq_data",
+      "label": "Volume: plane_rabbitmq_data",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "volume: plane_rabbitmq_data",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "docker_compose_volume_redisdata",
+      "label": "Volume: plane_redisdata",
+      "community": 1,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "concept",
+      "norm_label": "volume: plane_redisdata",
+      "source_file": "docker-compose.yml"
+    },
+    {
+      "id": "os",
+      "label": "os",
+      "community": 2,
+      "community_name": "Operations & Disaster Recovery",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "os",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "re",
       "label": "re",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "external": true,
       "file_type": "concept",
       "norm_label": "re",
@@ -428,7 +454,7 @@
       "id": "secrets",
       "label": "secrets",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "external": true,
       "file_type": "concept",
       "norm_label": "secrets",
@@ -439,7 +465,7 @@
       "id": "string",
       "label": "string",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
+      "community_name": "Operations & Disaster Recovery",
       "external": true,
       "file_type": "concept",
       "norm_label": "string",
@@ -447,15 +473,40 @@
       "type": "external"
     },
     {
-      "id": "sys",
-      "label": "sys",
+      "id": "scripts_backup_sh",
+      "label": "backup.sh (Hot Dump & Volume Archiver)",
       "community": 2,
-      "community_name": "Architecture Cluster 2",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "sys",
-      "source_file": "",
-      "type": "external"
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "backup.sh (hot dump & volume archiver)",
+      "source_file": "scripts/backup.sh"
+    },
+    {
+      "id": "scripts_manage_sh",
+      "label": "manage.sh (Operations CLI)",
+      "community": 2,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "manage.sh (operations cli)",
+      "source_file": "scripts/manage.sh"
+    },
+    {
+      "id": "scripts_restore_sh",
+      "label": "restore.sh (Disaster Recovery Engine)",
+      "community": 2,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "restore.sh (disaster recovery engine)",
+      "source_file": "scripts/restore.sh"
+    },
+    {
+      "id": "deploy_ps1",
+      "label": "deploy.ps1 (Windows Quick Launcher)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "deploy.ps1 (windows quick launcher)",
+      "source_file": "deploy.ps1"
     },
     {
       "id": "deploy_sh",
@@ -465,6 +516,15 @@
       "file_type": "code",
       "norm_label": "deploy.sh (bootstrap launcher)",
       "source_file": "deploy.sh"
+    },
+    {
+      "id": "scripts_deploy_server_ps1",
+      "label": "deploy-server.ps1 (Windows Server Automated Provisioner)",
+      "community": 3,
+      "community_name": "Operations & Disaster Recovery",
+      "file_type": "code",
+      "norm_label": "deploy-server.ps1 (windows server automated provisioner)",
+      "source_file": "scripts/deploy-server.ps1"
     },
     {
       "id": "scripts_deploy_server_sh",
@@ -503,15 +563,6 @@
       "source_file": "docs/REMOTE_DEPLOYMENT.md"
     },
     {
-      "id": "docs_reverse_proxy",
-      "label": "docs/REVERSE_PROXY.md",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "document",
-      "norm_label": "docs/reverse_proxy.md",
-      "source_file": "docs/REVERSE_PROXY.md"
-    },
-    {
       "id": "docs_upgrade",
       "label": "docs/UPGRADE.md",
       "community": 3,
@@ -521,31 +572,13 @@
       "source_file": "docs/UPGRADE.md"
     },
     {
-      "id": "proxy_caddy_caddyfile",
-      "label": "proxy/caddy/Caddyfile (Caddy Reverse Proxy)",
+      "id": "docs_windows_server_deployment",
+      "label": "docs/WINDOWS_SERVER_DEPLOYMENT.md",
       "community": 3,
       "community_name": "Operations & Disaster Recovery",
       "file_type": "document",
-      "norm_label": "proxy/caddy/caddyfile (caddy reverse proxy)",
-      "source_file": "proxy/caddy/Caddyfile"
-    },
-    {
-      "id": "proxy_nginx_plane_conf",
-      "label": "proxy/nginx/plane.conf (Nginx Reverse Proxy)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "document",
-      "norm_label": "proxy/nginx/plane.conf (nginx reverse proxy)",
-      "source_file": "proxy/nginx/plane.conf"
-    },
-    {
-      "id": "proxy_traefik_dynamic_conf",
-      "label": "proxy/traefik/dynamic_conf.yml (Traefik Ingress)",
-      "community": 3,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "document",
-      "norm_label": "proxy/traefik/dynamic_conf.yml (traefik ingress)",
-      "source_file": "proxy/traefik/dynamic_conf.yml"
+      "norm_label": "docs/windows_server_deployment.md",
+      "source_file": "docs/WINDOWS_SERVER_DEPLOYMENT.md"
     },
     {
       "id": "readme_md",
@@ -611,31 +644,40 @@
       "source_file": "docker-compose.yml"
     },
     {
-      "id": "scripts_backup_sh",
-      "label": "backup.sh (Hot Dump & Volume Archiver)",
+      "id": "docs_reverse_proxy",
+      "label": "docs/REVERSE_PROXY.md",
       "community": 5,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "backup.sh (hot dump & volume archiver)",
-      "source_file": "scripts/backup.sh"
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "document",
+      "norm_label": "docs/reverse_proxy.md",
+      "source_file": "docs/REVERSE_PROXY.md"
     },
     {
-      "id": "scripts_manage_sh",
-      "label": "manage.sh (Operations CLI)",
+      "id": "proxy_caddy_caddyfile",
+      "label": "proxy/caddy/Caddyfile (Caddy Reverse Proxy)",
       "community": 5,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "manage.sh (operations cli)",
-      "source_file": "scripts/manage.sh"
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "document",
+      "norm_label": "proxy/caddy/caddyfile (caddy reverse proxy)",
+      "source_file": "proxy/caddy/Caddyfile"
     },
     {
-      "id": "scripts_restore_sh",
-      "label": "restore.sh (Disaster Recovery Engine)",
+      "id": "proxy_nginx_plane_conf",
+      "label": "proxy/nginx/plane.conf (Nginx Reverse Proxy)",
       "community": 5,
-      "community_name": "Operations & Disaster Recovery",
-      "file_type": "code",
-      "norm_label": "restore.sh (disaster recovery engine)",
-      "source_file": "scripts/restore.sh"
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "document",
+      "norm_label": "proxy/nginx/plane.conf (nginx reverse proxy)",
+      "source_file": "proxy/nginx/plane.conf"
+    },
+    {
+      "id": "proxy_traefik_dynamic_conf",
+      "label": "proxy/traefik/dynamic_conf.yml (Traefik Ingress)",
+      "community": 5,
+      "community_name": "Gateway & Reverse Proxy",
+      "file_type": "document",
+      "norm_label": "proxy/traefik/dynamic_conf.yml (traefik ingress)",
+      "source_file": "proxy/traefik/dynamic_conf.yml"
     },
     {
       "id": "docker_compose_network_plane_network",
@@ -1078,6 +1120,14 @@
       "source_file": "docs/REMOTE_DEPLOYMENT.md"
     },
     {
+      "source": "docs_windows_server_deployment",
+      "target": "scripts_deploy_server_ps1",
+      "relation": "documents_script",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/WINDOWS_SERVER_DEPLOYMENT.md"
+    },
+    {
       "source": "docs_reverse_proxy",
       "target": "proxy_caddy_caddyfile",
       "relation": "documents_template",
@@ -1110,12 +1160,28 @@
       "source_file": "docker-compose.yml"
     },
     {
+      "source": "deploy_ps1",
+      "target": "scripts_deploy_server_ps1",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "deploy.ps1"
+    },
+    {
       "source": "deploy_sh",
       "target": "scripts_deploy_server_sh",
       "relation": "invokes",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "deploy.sh"
+    },
+    {
+      "source": "scripts_deploy_server_ps1",
+      "target": "scripts_generate_secrets",
+      "relation": "invokes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/deploy-server.ps1"
     },
     {
       "source": "scripts_deploy_server_sh",
@@ -1172,6 +1238,14 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/manage.sh"
+    },
+    {
+      "source": "scripts_deploy_server_ps1",
+      "target": "docker_compose_plane_proxy",
+      "relation": "launches",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/deploy-server.ps1"
     },
     {
       "source": "scripts_deploy_server_sh",
@@ -1288,6 +1362,14 @@
     {
       "source": "readme_md",
       "target": "docs_upgrade",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "docs_windows_server_deployment",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -1427,7 +1509,22 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "scripts/deploy-server.sh"
+    },
+    {
+      "id": "windows_deployment_pipeline",
+      "label": "Windows Server Automated Provisioning Pipeline",
+      "nodes": [
+        "deploy_ps1",
+        "scripts_deploy_server_ps1",
+        "scripts_generate_secrets",
+        "docker_compose_plane_proxy",
+        "docs_windows_server_deployment"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/deploy-server.ps1"
     }
   ],
-  "built_at_commit": "ce22df56b168d6bcb5bf8806c664d450ecefbbd4"
+  "built_at_commit": "804c8d8811c4db6170dbfee5f0d311bd372acbd6"
 }

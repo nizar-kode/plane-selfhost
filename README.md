@@ -97,7 +97,27 @@ Before starting, ensure your host server meets the following requirements:
 
 ## Remote Server Deployment (New Server / VPS)
 
-To deploy Plane on a fresh remote server (Ubuntu, Debian, CentOS, Rocky Linux, AWS, DigitalOcean, Hetzner, etc.) from scratch — including Docker installation, Git retrieval, secret generation, firewall setup, and container launch:
+### Option A: Windows Server (2022 / 2025 / Windows 10/11)
+To deploy on a fresh Windows Server without Docker pre-installed:
+
+1. Connect to the Windows Server via RDP or PowerShell SSH.
+2. Open **PowerShell as Administrator** and run:
+
+```powershell
+# Automated one-command deployment
+irm https://raw.githubusercontent.com/nizar-kode/plane-selfhost/main/deploy.ps1 | iex
+```
+
+Or if cloned locally:
+```powershell
+powershell -ExecutionPolicy Bypass -File .\deploy.ps1
+```
+
+> [!TIP]
+> For the complete step-by-step Windows Server guide, WSL 2 setup, IIS port-80 resolution, and Task Scheduler automation, see **[docs/WINDOWS_SERVER_DEPLOYMENT.md](file:///docs/WINDOWS_SERVER_DEPLOYMENT.md)**.
+
+### Option B: Linux Server (Ubuntu, Debian, CentOS, Rocky Linux)
+To deploy on a fresh Linux remote server from scratch:
 
 ```bash
 # 1. SSH into your remote server
@@ -113,7 +133,7 @@ Or if the repository is already cloned on the server:
 ```
 
 > [!TIP]
-> For the comprehensive step-by-step manual, swap sizing, and cloud firewall recommendations, see **[docs/REMOTE_DEPLOYMENT.md](file:///docs/REMOTE_DEPLOYMENT.md)**.
+> For the complete Linux step-by-step manual, swap sizing, and cloud firewall recommendations, see **[docs/REMOTE_DEPLOYMENT.md](file:///docs/REMOTE_DEPLOYMENT.md)**.
 
 ---
 

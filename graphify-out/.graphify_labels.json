@@ -1,9 +1,9 @@
 {
-  "0": "Gateway & Reverse Proxy",
-  "1": "Architecture Cluster 1",
-  "2": "Architecture Cluster 2",
+  "0": "Architecture Cluster 0",
+  "1": "Gateway & Reverse Proxy",
+  "2": "Operations & Disaster Recovery",
   "3": "Operations & Disaster Recovery",
   "4": "Operations & Disaster Recovery",
-  "5": "Operations & Disaster Recovery",
+  "5": "Gateway & Reverse Proxy",
   "6": "Architecture Cluster 6"
 }
