@@ -14,6 +14,9 @@ param (
     [string]$RepoUrl = "https://github.com/nizar-kode/plane-selfhost.git"
 )
 
+# Bypass execution policy for the current process
+try { Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force -ErrorAction SilentlyContinue } catch {}
+
 # Safely resolve script directory when run from file vs piped to Invoke-Expression (iex)
 $ScriptPath = $null
 try {
@@ -26,7 +29,8 @@ $ScriptDir = if (![string]::IsNullOrWhiteSpace($ScriptPath)) { Split-Path -Paren
 
 # Scenario 1: Running locally from within the cloned repository
 if ($ScriptDir -and (Test-Path (Join-Path $ScriptDir "scripts\deploy-server.ps1"))) {
-    & (Join-Path $ScriptDir "scripts\deploy-server.ps1") -ServerIPOrDomain $ServerIPOrDomain -InstallDir $InstallDir -RepoUrl $RepoUrl
+    $localEngine = Join-Path $ScriptDir "scripts\deploy-server.ps1"
+    powershell.exe -ExecutionPolicy Bypass -File $localEngine -ServerIPOrDomain $ServerIPOrDomain -InstallDir $InstallDir -RepoUrl $RepoUrl
     return
 }
 
@@ -75,7 +79,7 @@ if (-not (Test-Path $deployScript)) {
 # Launch the full automated Windows deployment engine
 if (Test-Path $deployScript) {
     Set-Location $InstallDir
-    & $deployScript -ServerIPOrDomain $ServerIPOrDomain -InstallDir $InstallDir -RepoUrl $RepoUrl
+    powershell.exe -ExecutionPolicy Bypass -File $deployScript -ServerIPOrDomain $ServerIPOrDomain -InstallDir $InstallDir -RepoUrl $RepoUrl
 } else {
     Write-Error "Deployment engine not found at $deployScript. Please verify repository files."
 }
