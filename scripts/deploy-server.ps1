@@ -135,21 +135,20 @@ function Install-Prerequisites {
     }
 
     # 2. Check Python
-    if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
-        Log-Info "Python is not detected. Installing Python 3..."
-        if (Get-Command winget -ErrorAction SilentlyContinue) {
-            winget install --id Python.Python.3.11 -e --source winget --accept-source-agreements --accept-package-agreements --silent
-        } else {
-            $pyInstaller = "$env:TEMP\python-installer.exe"
-            Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.11.8/python-3.11.8-amd64.exe" -OutFile $pyInstaller
-            Start-Process -FilePath $pyInstaller -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
-            Remove-Item -Force $pyInstaller -ErrorAction SilentlyContinue
+    $pythonFound = $false
+    try {
+        if (Get-Command python -ErrorAction SilentlyContinue) {
+            $pyTest = (python -c "import sys; print('PYTHON_OK')" 2>&1)
+            if ($LASTEXITCODE -eq 0 -and $pyTest -match "PYTHON_OK") {
+                $pythonFound = $true
+                $pyVer = (python --version 2>&1).Trim()
+                Log-Success "Python is already installed: $pyVer"
+            }
         }
-        $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-        Log-Success "Python installed successfully."
-    } else {
-        $pyVer = (python --version 2>&1)
-        Log-Success "Python is already installed: $pyVer"
+    } catch {}
+
+    if (-not $pythonFound) {
+        Log-Info "Python is not installed. Native PowerShell cryptographic RNG will be used for secret generation."
     }
 }
 
@@ -206,8 +205,15 @@ function Install-DockerOnWindows {
     }
 
     # Verify if Docker is already available
-    if ((Get-Command docker -ErrorAction SilentlyContinue) -and (Get-Command "docker-compose" -ErrorAction SilentlyContinue -or (docker compose version 2>$null))) {
-        $dVer = (docker --version)
+    $hasDocker = $false
+    try {
+        if (Get-Command docker -ErrorAction SilentlyContinue) {
+            $hasDocker = $true
+        }
+    } catch {}
+
+    if ($hasDocker) {
+        $dVer = (docker --version 2>&1)
         Log-Success "Docker is already installed: $dVer"
         
         # Verify Docker daemon is running
@@ -348,17 +354,50 @@ function Configure-Environment {
         Copy-Item ".env.example" ".env"
     }
 
-    # Run Python secret generator
-    if (Get-Command python -ErrorAction SilentlyContinue) {
+    # Run Python secret generator if real python is working, otherwise use PowerShell cryptographic RNG
+    $canRunPythonGen = $false
+    try {
+        if (Get-Command python -ErrorAction SilentlyContinue) {
+            $pyCheck = (python -c "import secrets; print('OK')" 2>&1)
+            if ($LASTEXITCODE -eq 0 -and $pyCheck -match "OK") {
+                $canRunPythonGen = $true
+            }
+        }
+    } catch {}
+
+    if ($canRunPythonGen) {
         Log-Info "Generating high-entropy cryptographic keys via Python..."
         python scripts/generate_secrets.py --force
     } else {
-        Log-Warn "Python not found in current path; using PowerShell cryptographic RNG..."
-        $rng = [System.Security.Cryptography.RandomNumberGenerator]::Create()
-        $bytes = New-Object byte[] 32
-        $rng.GetBytes($bytes)
-        $secretKey = [Convert]::ToBase64String($bytes).Replace('+','-').Replace('/','_').TrimEnd('=') + "PlaneSecretKey2026Secure"
-        (Get-Content ".env") -replace "^SECRET_KEY=.*", "SECRET_KEY=$secretKey" | Set-Content ".env"
+        Log-Info "Generating high-entropy cryptographic keys via PowerShell cryptographic RNG..."
+        function New-CryptKey([int]$len = 40) {
+            $alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%^&*()-_=+[]{}~"
+            $bytes = New-Object byte[] $len
+            $rng = [System.Security.Cryptography.RandomNumberGenerator]::Create()
+            $rng.GetBytes($bytes)
+            $str = ""
+            for ($k = 0; $k -lt $len; $k++) {
+                $str += $alphabet[$bytes[$k] % $alphabet.Length]
+            }
+            return $str
+        }
+
+        $secretKey = New-CryptKey 50
+        $liveKey = New-CryptKey 40
+        $pgPass = New-CryptKey 32
+        $redisPass = New-CryptKey 32
+        $mqPass = New-CryptKey 32
+        $s3Pass = New-CryptKey 40
+
+        $envRaw = Get-Content ".env"
+        $envRaw = $envRaw -replace "^SECRET_KEY=.*", "SECRET_KEY=$secretKey"
+        $envRaw = $envRaw -replace "^LIVE_SERVER_SECRET_KEY=.*", "LIVE_SERVER_SECRET_KEY=$liveKey"
+        $envRaw = $envRaw -replace "^POSTGRES_PASSWORD=.*", "POSTGRES_PASSWORD=$pgPass"
+        $envRaw = $envRaw -replace "^REDIS_PASSWORD=.*", "REDIS_PASSWORD=$redisPass"
+        $envRaw = $envRaw -replace "^RABBITMQ_PASSWORD=.*", "RABBITMQ_PASSWORD=$mqPass"
+        $envRaw = $envRaw -replace "^AWS_SECRET_ACCESS_KEY=.*", "AWS_SECRET_ACCESS_KEY=$s3Pass"
+        $envRaw | Set-Content ".env" -Encoding UTF8
+        Log-Success "Generated cryptographically secure credentials for database, queues, and Django."
     }
 
     # Determine scheme and URLs

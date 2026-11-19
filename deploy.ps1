@@ -55,21 +55,13 @@ if (-not (Test-Path $InstallDir)) {
 
 $deployScript = Join-Path $InstallDir "scripts\deploy-server.ps1"
 
-# Ensure repository files in target directory are present and up-to-date
-if (Test-Path "$InstallDir\.git") {
-    if (Get-Command git -ErrorAction SilentlyContinue) {
-        Write-Host "[INFO] Updating repository files via Git..." -ForegroundColor Green
-        try {
-            Set-Location $InstallDir
-            git pull origin main --quiet
-        } catch {}
-    }
-} elseif (-not (Test-Path $deployScript)) {
+# Ensure repository files in target directory are present
+if (-not (Test-Path (Join-Path $InstallDir "docker-compose.yml"))) {
     if (Get-Command git -ErrorAction SilentlyContinue) {
         Write-Host "[INFO] Git detected. Cloning repository..." -ForegroundColor Green
         git clone $RepoUrl $InstallDir
     } else {
-        Write-Host "[INFO] Git is not yet installed. Downloading repository archive from GitHub..." -ForegroundColor Yellow
+        Write-Host "[INFO] Downloading repository archive from GitHub..." -ForegroundColor Yellow
         $zipUrl = "https://github.com/nizar-kode/plane-selfhost/archive/refs/heads/main.zip"
         $zipFile = "$env:TEMP\plane-selfhost-main.zip"
         $extractDir = "$env:TEMP\plane-selfhost-extract"
@@ -91,6 +83,21 @@ if (Test-Path "$InstallDir\.git") {
         Remove-Item -Recurse -Force $extractDir -ErrorAction SilentlyContinue
         Write-Host "[OK] Repository files successfully staged to $InstallDir" -ForegroundColor Green
     }
+}
+
+# Ensure deploy-server.ps1 engine is up-to-date
+if (Test-Path "$InstallDir\.git") {
+    if (Get-Command git -ErrorAction SilentlyContinue) {
+        try {
+            Set-Location $InstallDir
+            git pull origin main --quiet
+        } catch {}
+    }
+} else {
+    try {
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/nizar-kode/plane-selfhost/main/scripts/deploy-server.ps1" -OutFile $deployScript -UseBasicParsing
+    } catch {}
 }
 
 # Launch the full automated Windows deployment engine
