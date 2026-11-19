@@ -341,10 +341,11 @@ function Configure-Environment {
         Write-Host "Detected local network IP: $detectedIP" -ForegroundColor Gray
         $inputAddress = Read-Host "Enter Server IP Address or Domain Name [$detectedIP]"
         if ([string]::IsNullOrWhiteSpace($inputAddress)) {
-            $ServerIPOrDomain = $detectedIP
+            $script:ServerIPOrDomain = $detectedIP
         } else {
-            $ServerIPOrDomain = $inputAddress.Trim()
+            $script:ServerIPOrDomain = $inputAddress.Trim()
         }
+        $ServerIPOrDomain = $script:ServerIPOrDomain
     }
 
     Log-Info "Configuring Plane for server address: $ServerIPOrDomain"
