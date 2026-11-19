@@ -309,7 +309,7 @@ function Configure-Environment {
     $envContent = $envContent -replace "^APP_DOMAIN=.*", "APP_DOMAIN=$ServerIPOrDomain"
     $envContent = $envContent -replace "^WEB_URL=.*", "WEB_URL=$webUrl"
     $envContent = $envContent -replace "^CORS_ALLOWED_ORIGINS=.*", "CORS_ALLOWED_ORIGINS=$webUrl"
-    $envContent = $envContent -replace "^SITE_ADDRESS=.*", "SITE_ADDRESS=:$HttpPort"
+    $envContent = $envContent -replace "^SITE_ADDRESS=.*", "SITE_ADDRESS=:80"
     $envContent = $envContent -replace "^LISTEN_HTTP_PORT=.*", "LISTEN_HTTP_PORT=$HttpPort"
     $envContent = $envContent -replace "^LISTEN_HTTPS_PORT=.*", "LISTEN_HTTPS_PORT=$HttpsPort"
     $envContent | Set-Content ".env" -Encoding UTF8
