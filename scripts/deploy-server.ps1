@@ -31,6 +31,22 @@ param (
     [int]$HttpsPort = 443
 )
 
+# Allow environment variable override for ports
+if ($env:HTTP_PORT -and $HttpPort -eq 80) {
+    $HttpPort = [int]$env:HTTP_PORT
+}
+if ($env:PORT -and $HttpPort -eq 80) {
+    $HttpPort = [int]$env:PORT
+}
+
+# If script is run directly from repo folder, default InstallDir to that folder
+if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot "..\docker-compose.yml"))) {
+    $resolvedRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+    if ($InstallDir -eq "C:\plane-selfhost" -and $resolvedRoot -ne "C:\plane-selfhost" -and (Test-Path "$resolvedRoot\docker-compose.yml")) {
+        $InstallDir = $resolvedRoot
+    }
+}
+
 $ErrorActionPreference = "Continue"
 
 # ------------------------------------------------------------------------------
@@ -141,8 +157,55 @@ function Install-Prerequisites {
 # 3. Docker Installation & WSL 2 Backend
 # ------------------------------------------------------------------------------
 function Install-DockerOnWindows {
-    Log-Step "Step 3/8: Verifying & Installing Docker for Windows"
+    Log-Step "Step 3/8: Verifying & Installing Docker and WSL 2 Backend"
 
+    $osInfo = Get-CimInstance Win32_OperatingSystem
+    $isWindowsServer = ($osInfo.ProductType -ne 1)
+    $osName = $osInfo.Caption
+    Log-Info "Operating System detected: $osName (Windows Server: $isWindowsServer)"
+
+    # Verify WSL 2 prerequisites
+    Log-Info "Checking Windows Subsystem for Linux (WSL 2)..."
+    $wslReady = $false
+    try {
+        if (Get-Command wsl -ErrorAction SilentlyContinue) {
+            $wslStatus = (wsl.exe --status 2>&1 | Out-String)
+            if ($wslStatus -match "Default Version: 2" -or $LASTEXITCODE -eq 0) {
+                $wslReady = $true
+                Log-Success "WSL 2 is active and operational."
+            }
+        }
+    } catch {}
+
+    if (-not $wslReady) {
+        Log-Info "Configuring Windows features for WSL 2 (Subsystem & Virtual Machine Platform)..."
+        try {
+            dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart | Out-Null
+            dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart | Out-Null
+        } catch {
+            Log-Warn "DISM feature enable returned: $_"
+        }
+
+        # Install WSL kernel package
+        try {
+            Log-Info "Installing/Updating WSL 2 Linux kernel..."
+            $kernelMsi = "$env:TEMP\wsl_update_x64.msi"
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            Invoke-WebRequest -Uri "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" -OutFile $kernelMsi -UseBasicParsing
+            Start-Process msiexec.exe -ArgumentList "/i `"$kernelMsi`" /quiet /norestart" -Wait
+            Remove-Item -Force $kernelMsi -ErrorAction SilentlyContinue
+            Log-Success "Official Microsoft WSL 2 Kernel installed."
+        } catch {
+            Log-Warn "Could not download WSL2 kernel MSI directly: $_"
+        }
+
+        try {
+            wsl.exe --install --no-distribution 2>&1 | Out-Null
+            wsl.exe --set-default-version 2 2>&1 | Out-Null
+        } catch {}
+    }
+
+    # Verify if Docker is already available
     if ((Get-Command docker -ErrorAction SilentlyContinue) -and (Get-Command "docker-compose" -ErrorAction SilentlyContinue -or (docker compose version 2>$null))) {
         $dVer = (docker --version)
         Log-Success "Docker is already installed: $dVer"
@@ -155,7 +218,7 @@ function Install-DockerOnWindows {
         } catch {}
 
         if (-not $dockerReady) {
-            Log-Info "Docker Engine is not running. Attempting to start Docker Desktop service..."
+            Log-Info "Docker Engine is not running. Attempting to start Docker Desktop..."
             Start-Process "C:\Program Files\Docker\Docker\Docker Desktop.exe" -ErrorAction SilentlyContinue
             Write-Host "Waiting for Docker daemon to become responsive..." -NoNewline
             for ($i = 0; $i -lt 30; $i++) {
@@ -176,24 +239,23 @@ function Install-DockerOnWindows {
         }
     }
 
-    # Docker is missing - perform automated installation
+    # Docker is missing - perform installation
     Log-Info "Docker is not detected on this server. Initiating Docker setup..."
 
-    # Enable Virtual Machine Platform and WSL feature if not present
-    Log-Info "Ensuring Windows Subsystem for Linux (WSL) and Virtual Machine Platform are enabled..."
-    try {
-        dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart | Out-Null
-        dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart | Out-Null
-    } catch {}
+    if ($isWindowsServer) {
+        Log-Warn "Notice: On Windows Server ($osName), Docker Desktop is not officially provided by Docker."
+        Log-Info "Attempting standard Docker Desktop installation; if blocked by installer, WSL2 Ubuntu backend can be utilized."
+    }
 
-    # Install Docker Desktop
-    Log-Info "Installing Docker Desktop..."
+    # Attempt Docker Desktop install
     if (Get-Command winget -ErrorAction SilentlyContinue) {
+        Log-Info "Installing Docker Desktop via winget..."
         winget install --id Docker.DockerDesktop -e --source winget --accept-source-agreements --accept-package-agreements --silent
     } else {
         $dockerInstaller = "$env:TEMP\DockerDesktopInstaller.exe"
         Log-Info "Downloading Docker Desktop Installer (approx. 500 MB)..."
-        Invoke-WebRequest -Uri "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe" -OutFile $dockerInstaller
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        Invoke-WebRequest -Uri "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe" -OutFile $dockerInstaller -UseBasicParsing
         Log-Info "Executing silent Docker installation..."
         Start-Process -FilePath $dockerInstaller -ArgumentList "install --quiet --accept-licenses" -Wait
         Remove-Item -Force $dockerInstaller -ErrorAction SilentlyContinue
@@ -201,7 +263,7 @@ function Install-DockerOnWindows {
 
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-    Log-Success "Docker Desktop installed successfully."
+    Log-Success "Docker Desktop installation finished."
     Log-Info "Starting Docker Desktop service..."
     Start-Process "C:\Program Files\Docker\Docker\Docker Desktop.exe" -ErrorAction SilentlyContinue
 
@@ -219,8 +281,10 @@ function Install-DockerOnWindows {
     Write-Host ""
 
     if (-not $ready) {
-        Log-Warn "Docker Desktop was installed, but the engine is still initializing."
-        Log-Warn "If this is a fresh WSL install, a system reboot may be required by Windows before Docker can run Linux containers."
+        Log-Warn "Docker engine has not yet reported ready."
+        Log-Warn "IMPORTANT: If this server just had VirtualMachinePlatform or WSL enabled for the first time,"
+        Log-Warn "Windows requires a system reboot to initialize the hypervisor."
+        Log-Warn "Run 'Restart-Computer' to reboot, then re-run this script after logging back in."
     } else {
         Log-Success "Docker daemon is active and responsive."
     }

@@ -15,6 +15,14 @@ param (
     [int]$HttpPort = 80
 )
 
+# Allow environment variable override for port (useful when piping to iex)
+if ($env:HTTP_PORT -and $HttpPort -eq 80) {
+    $HttpPort = [int]$env:HTTP_PORT
+}
+if ($env:PORT -and $HttpPort -eq 80) {
+    $HttpPort = [int]$env:PORT
+}
+
 # Bypass execution policy for the current process
 try { Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force -ErrorAction SilentlyContinue } catch {}
 
@@ -47,8 +55,16 @@ if (-not (Test-Path $InstallDir)) {
 
 $deployScript = Join-Path $InstallDir "scripts\deploy-server.ps1"
 
-# If repository files are not present in target directory, fetch them
-if (-not (Test-Path $deployScript)) {
+# Ensure repository files in target directory are present and up-to-date
+if (Test-Path "$InstallDir\.git") {
+    if (Get-Command git -ErrorAction SilentlyContinue) {
+        Write-Host "[INFO] Updating repository files via Git..." -ForegroundColor Green
+        try {
+            Set-Location $InstallDir
+            git pull origin main --quiet
+        } catch {}
+    }
+} elseif (-not (Test-Path $deployScript)) {
     if (Get-Command git -ErrorAction SilentlyContinue) {
         Write-Host "[INFO] Git detected. Cloning repository..." -ForegroundColor Green
         git clone $RepoUrl $InstallDir
